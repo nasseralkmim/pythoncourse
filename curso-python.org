@@ -1,0 +1,1729 @@
+#+author: Nasser Alkmim
+#+title: Curso de Python
+#+email: nasser.alkmim@gmail.com
+#+options: toc:t
+#+OPTIONS: H:2
+
+
+* Dia 1
+*** Introdução
+***** Apresentação
+
+1. Nasser Alkmim
+   
+***** Por que aprender programação
+
+1. Raciocínio lógico
+2. Ferramenta que auxiliar na produtividade
+   1. Automação
+   2. Soluções mais eficientes
+3. Poder comunicar essas soluções com outros
+4. Exemplo: automatizar baixar dados e trata-los
+
+
+***** Python é usada pra que?
+
+- Backend :: "análises por trás dos panos"
+- Frontend :: "design e interfaces"
+
+***** Python é popular, por que?
+
+1. simples
+2. produtividade
+3. legível
+
+***** Legível
+
+#+BEGIN_SRC python
+if (10 > 2) is True:
+    print('ok')
+#+END_SRC
+
+#+RESULTS:
+: ok
+
+***** Python popular, por que?
+
+1. comunidade grande e disposta a ajudar
+2. vasta quantidade de bibliotecas
+   1. numpy
+   2. matplotlib
+   3. pandas
+   4. scikit-learn/tensorflow
+
+
+***** Ementa
+
+1. cmd prompt/idle
+2. Strings/Int/Float
+3. Listas/Dicionários
+4. Condicional/Loops
+5. Ler/escrever arquivos
+6. Importar módulos
+7. Funções
+
+*** cmd e interprete
+
+1. calculadora
+2. interpretar/rodar arquivos
+   
+***** Exercício
+
+Testar as operações básicas
+
+1. +
+2. -
+3. /
+4. *
+5. **
+
+
+
+*** Tipos em Python
+***** Tipos
+
+1. Números: 120, 3.14, 1e3
+2. Strings: 'texto', "Hello"
+3. Listas: [1, [5, 'string']]
+4. Dicionários: {'book': 'livro', 'idadade': 10}
+5. Tuples: (2, 'tres')
+
+
+***** Strings 
+
+#+BEGIN_SRC python
+str = 'isso é uma string'
+print(str, type(str))
+#+END_SRC
+
+#+RESULTS:
+: isso é uma string <class 'str'>
+
+***** Formatar strings
+
+1. format e "\n" e "\t" 
+
+#+BEGIN_SRC python
+nome = 'Joao'
+idade = 22
+profissao = 'carpiteiro'
+# isso e um comentario 
+# print('seu nome é {} \te sua idade é {}'.format(nome, idade))
+print('Nome: {}\nIdade: {}\nProfissao: {}'.format(nome,idade,profissao))
+#+END_SRC
+
+#+RESULTS:
+: Nome: Joao
+: Idade: 22
+: Profissao: carpiteiro
+
+
+***** Strings exercício
+
+Definir variáveis para seu nome, profissão e hobby
+Imprimir uma tabela com esses dados usando =\n= e =\t=
+
+
+*** Listas/Dicionários
+***** O que são?
+
+1. o que pode entrar numa lista??
+   
+#+BEGIN_SRC python
+lista = [1, 2, [20, 3], 'strings', (2, 3)]
+print(lista, type(lista))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[1, 2, [20, 3], 'strings', (2, 3)] <class 'list'>
+:END:
+
+***** Slicing
+
+1. começo : fim : passo
+2. onde fica o fim?
+3. lista de lista
+4. slicing para alterar entrada da lista
+
+#+BEGIN_SRC python
+lista = [0, 1, 2, 3, 4, 5, 6]
+lista2 = [[1, 1000, 1], [4, 4, 4]]
+lista2[0][1] = 2000
+print(lista2)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[1, 2000, 1], [4, 4, 4]]
+:END:
+
+***** Operações
+
+1. soma de listas
+2. escalar * lista
+
+
+#+BEGIN_SRC python
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+print(lista1*2)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[1, 2, 3, 1, 2, 3]
+:END:
+
+***** Métodos úteis
+
+1. len() -> tamanho da lista
+2. método index() e "in-place" sort()
+3. dir() -> mostra todos os atributos
+
+#+BEGIN_SRC python
+lista = [[78, 20, 65], [203, 30, 2]]
+print(len(lista))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+3
+:END:
+
+
+***** Exercício
+
+Dada a lista:
+
+l = [3]*5
+
+Mudar o elemento de índice 3 para 10
+
+***** Exercício
+
+Dada a lista:
+
+l = list(range(13)) = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+Obters os elementos com índice ímpar até o termo de índice 10 (incluindo ele)
+
+#+BEGIN_SRC python
+
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[1, 3, 5, 7, 9]
+:END:
+
+***** Dicionários
+
+1. arrays associativos
+2. acessar valor com chave
+
+#+BEGIN_SRC python
+dic = {'key': 'value'}
+# isso e um comentario
+material = {'E': 1e9, 'nu': 0.2, 'alpha': 1e-5}
+material['beta'] = 1e2
+print(material)                 # coments
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+{'E': 1000000000.0, 'nu': 0.2, 'alpha': 1e-05, 'beta': 100.0}
+:END:
+
+
+***** Dictionário são úteis
+
+1. checar se o dicionário tem a chave "in"
+2. listar keys() e items()
+
+#+BEGIN_SRC python
+domicilio = {'num': 10, 'pessoas': [2, 1], 'renda': 100}
+domicilio2 = {'num': 10, 'pessoas': 3, 'renda': 100}
+
+lista = [domicilio, domicilio2]
+print(lista[0]['pessoas'][0])
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+2
+:END:
+
+
+*** Condicional
+***** O que é?
+
+1. if/elif/else
+2. sintax, notar a identação do bloco
+
+#+BEGIN_SRC python
+if 2 < 1:
+    print('Essa afirmação é verdadeira')
+elif 2 == 2:
+    print('teste 2')
+else:
+    print('caso contrario')
+
+x = 'var'
+print('\n', x)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+teste 2
+
+ var
+:END:
+
+
+***** Boolean
+
+1. and/or/not
+
+#+BEGIN_SRC python
+x = 9
+y = 20
+
+if x > y:
+    print('x>y é verdadeiro')
+elif x>5 and x % 3 == 0:
+    print('x é maior que 5 e divisível por 3')
+else:
+    print('todos os testes foram falsos')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+x é maior que 5 e divisível por 3
+:END:
+
+***** Checar vazios
+
+#+BEGIN_SRC python
+l = []
+if l == []:
+   print('essa lista está vazia')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+essa lista está vazia
+:END:
+
+***** Exercício
+
+Usuário entra um número e o programa diz se é divisível por 2 ou não.
+
+num % 2 == 0
+int()
+
+
+*** Loops
+***** for loop
+
+1. sintaxe (notar espaços)
+2. qualquer iteravel
+3. lista, range
+
+
+#+BEGIN_SRC python
+iteravel
+for i in iteravel:
+    print(i)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+0
+1
+2
+3
+4
+:END:
+
+***** Outros iteráveis - zip e enumerate
+
+1. operações entre duas listas
+
+#+BEGIN_SRC python
+lista1 = [2, 3, 4, 5]
+lista2 = [20, 30, 40, 50]
+
+for i, j in zip(lista1, lista2):
+    print(i, j)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[(2, 20), (3, 30), (4, 40), (5, 50)]
+2 20
+3 30
+4 40
+5 50
+:END:
+
+
+***** Outros iteráveis - dicionário
+
+
+#+BEGIN_SRC python
+dic = {'toyota':[1e6, 'japao'],
+       'bmw': [1e4, 'alemanha']}
+
+for marca, [num, pais] in dic.items():
+    print(marca, num, pais)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+toyota 1000000.0 japao
+bmw 10000.0 alemanha
+:END:
+***** List comprehension
+
+1. inline loops
+
+#+BEGIN_SRC python
+lista = [i**2 for i in range(20)]
+print(lista)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361]
+:END:
+
+***** Exercício
+
+Dado o dicionário:
+
+dic = {'ovo': [12, 'un'], 'leite': [500, 'ml'], 'farinha':[1, 'kg']}
+
+faça um teste para saber se a receita leva leite, e imprima o valor e a unidade.
+
+Resposta esperada: 'Receita leva 500 ml de leite'
+
+E depois saber se leva farinha.
+*** Ler e escrever arquivos
+
+***** Ler
+
+1. Criar um arquivo de textos
+2. 
+
+#+BEGIN_SRC python
+file_handle = open('nome do arquivo', 'r')  # r de read já é DEFAULT
+file_handle.close()
+#+END_SRC
+
+#+RESULTS:
+
+*** Abrir arquivos alternativa Pythonica
+
+#+BEGIN_SRC python
+with open('filename', 'r') as file_handle:
+    data = file_handle.read()
+    print(data)
+#+END_SRC
+
+*** Funções
+***** Sintaxe
+1. sintaxe
+2. docstring
+3. default argumento 
+4. *args, **kwargs
+   
+#+BEGIN_SRC python
+def soma_argumentos(arg1, arg2):
+    """Soma dois argumentos
+
+    Args:
+        arg1 (float): un numero
+
+    Return:
+        soma de dois numeros
+
+    """
+    return arg1 + arg2
+        
+print(soma_argumentos(arg2=2, arg1=30))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+32
+:END:
+
+
+***** Exercício
+
+Fazer uma função que calcula a soma dos termos ao quadrado de uma lista de tamanho qualquer.
+
+testar com:
+
+vetor = [4, 5, 8, 9]
+
+
+*** Importar módulos
+
+1. math, numpy, sys
+2. criar o proprio módulo que pega uma lista e recupera a soma dos termos ao quadrado.
+* Dia 2
+*** Introdução
+***** Ementa
+Nesse módulo serão tratados os seguintes assuntos:
+
+1. Loop
+2. Numpy
+3. Matplotlib
+4. Sympy
+5. Pandas
+*** OOP
+***** O que é OOP?
+
+1. Programação Orientada Objeto
+2. É uma técnica de estruturação do programa (modelagem)
+3. Utiliza o conceito de *Classes* e *Objetos*
+
+***** Motivação
+
+Estrutura de dados repetida
+
+#+BEGIN_SRC python
+# Funcionários (Objeto)
+nome1 = 'João'
+nome2 = 'Maria'
+nome3 = 'Jose'
+
+funcionarios = [nome1, nome2, nome3]
+
+num_funcionarios = len(funcionarios)
+
+# Salario de cada funcionario (Atributo)
+salario1 = 10000
+salario2 = 12000
+salario3 = 8000
+#+END_SRC
+***** Motivação 2
+
+Uma malha com coordenadas, conectividade, numero de nós, número de graus de liberdade, ...
+
+#+BEGIN_SRC python
+
+#+END_SRC
+
+***** O que é uma *Classe*?
+
+1. É um _construtor_ que define um tipo de dado
+2. Os dados ficam contidos num *container lógico*
+3. Usar quando houver padrões de comportamento, qualidades e sentido nos dados
+4. Contém as _instruções_ para criar um _objeto_
+5. Permite a definição de *numenclatura* lógica - facilita a compreensão do código
+
+#+BEGIN_SRC python :exports code
+class NomeDaClasse:
+    'Docstring explica o que a classe cria'
+
+    def __init__(self, atributo2):
+        'Inicia a classe'
+        self.atributo = 'atributo da instância'
+        self.novoatributo = atributo2
+
+objeto = NomeDaClasse('attr2')
+print(objeto.atributo)          # Depois do '.' acesso aos atributos/métodos
+print(objeto.novoatributo)
+#+END_SRC
+
+***** O que é um *objeto*, *método*, *atributo*?
+
+1. *Objeto*
+   1. Invocar uma *classe* significa _instânciar_ um *objeto*
+   2. Instância: significa "um exemplo", ou  "um caso"
+   3. As classes definem as características inerentes do objeto
+2. *Atributo*
+   1. É uma qualidade do objeto
+   2. Acessada com '.' =objeto.atributo=
+3. *Método*
+   1. É uma função definida na classe
+   2. É do objeto
+   3. Acessada com '.' =objeto.metodo()=
+
+
+***** O que é o parâmetro =self= e o método =__init__=?
+
+1. =self= é a própria instância (objeto) criada pela classe
+2. =__init__= é um método que inicializa o objeto com atributos
+   1. quando a classe é instanciada o método __init__ é chamado
+
+
+***** Como fica em formato de classe?
+
+#+BEGIN_SRC python :results output drawer code :exports both 
+class Funcionario:
+    'Cria o objeto funcionario'
+    contador = 0   # atributo da classe (acessado por todas as instâncias)
+
+    def __init__(self, nome, salario, cargo):
+        'Método que inicia a classe'
+        self.nome = nome
+        self.salario = salario
+        self.cargo = cargo
+        Funcionario.contador += 1 
+
+    def quantidade(self):
+        'Método que mostra o numero de funcionarios'
+        print(Funcionario.contador)
+
+func1 = Funcionario('joão', 1500, 'Faxineiro')
+func2 = Funcionario('maria', 12000, 'Gerente')
+func3 = Funcionario('andre', 20000, 'Engenheiro')
+
+func1.quantidade()
+
+# print(func2.nome, func2.salario)  # Atributos dos objetos
+# print(func1.quantidade())       # Invocar um método
+#+END_SRC
+
+
+
+***** Exemplo
+
+1. Fazer uma classe que contenha instruções para dados de um cachorro
+
+#+BEGIN_SRC python :results output drawer code :exports both 
+class Dog:
+    'Classe que define o cachorro'
+    def __init__(self, name, breed, color):
+        self.name = name        # Aplica os atributos
+        self.breed = breed
+        self.color = color
+
+    def bark(self):
+        print('{} barks!!!'.format(self.name))
+
+
+meu_cachorro = Dog('Euler', 'Poodle', 'Grey')  # Instânciei a classe e criei o objeto
+cachorro_da_marlete = Dog('Branca', 'XAXXAU', 'branca')
+
+print(cachorro_da_marlete.bark())
+#+END_SRC
+
+
+***** Exercício 
+
+Fazer uma classe para uma conta bancária com:
+- 1 atributo: balanço da conta
+- 2 métodos: um de saque e um de depósito.
+
+Testar:
+- Criar um objeto de conta bancaria
+- Depositar 1000 reais
+- Sacar 2,5 para almoçar
+- imprimir o balanço final
+
+
+*** Numpy
+***** O que é numpy?
+
+1. Biblioteca para computação científica em Python.
+2. Um equivalente ao Matlab
+3. Operações matriciais/vetoriais
+4. Kit para álgebra linear
+
+***** Como usar
+
+1. Baixar a biblioteca
+
+#+BEGIN_EXAMPLE
+pip install numpy
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+conda install numpy
+#+END_EXAMPLE
+
+2. Importar a biblioteca
+
+#+BEGIN_SRC python
+import numpy as np
+#+END_SRC
+
+***** Criação de arrays
+
+Arrays em 1D não são linha nem coluna
+
+#+BEGIN_SRC python 
+import numpy as np
+vetor = np.array([1,2 , 3, 10, 20])
+
+print(vetor)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ 1  2  3 10 20] <class 'numpy.ndarray'>
+:END:
+
+
+
+#+BEGIN_SRC python 
+
+matriz = np.array([[1, 2, 3],
+                   [4, 5, 6]])
+print(matriz.T)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[1 4]
+ [2 5]
+ [3 6]]
+:END:
+
+***** Convertendo lista para arrays
+
+#+BEGIN_SRC python 
+import numpy as np
+a = [[2, 2, 3], [10, 22, 32]]
+A = np.array(a)
+
+print(A, type(A))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[ 2  2  3]
+ [10 22 32]] <class 'numpy.ndarray'>
+:END:
+
+***** Iniciando arrays 
+
+1. np.zeros()
+2. np.ones()
+
+#+BEGIN_SRC python 
+import numpy as np
+
+zero = np.ones(5)
+m_zeros = np.zeros((2, 2, 2))
+print(m_zeros[:, :, 1])
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[ 0.  0.]
+ [ 0.  0.]]
+:END:
+
+
+
+***** Slicing de arrays 1D
+
+1. start:end:step
+
+#+BEGIN_SRC python 
+A = np.linspace(1, 10, 10)
+
+print(A[::2])
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ 1.  3.  5.  7.  9.]
+:END:
+
+***** Slicing de arrays 2D
+
+1. [linha, coluna]
+
+#+BEGIN_SRC python 
+np.random.seed(10)
+A = np.round(np.random.rand(5, 3), 1)
+print(A)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[ 0.8  0.   0.6]
+ [ 0.7  0.5  0.2]
+ [ 0.2  0.8  0.2]
+ [ 0.1  0.7  1. ]
+ [ 0.   0.5  0.8]]
+:END:
+
+***** Operando arrays 1D
+
+1. Termo a termo
+2. Vetorial
+
+#+BEGIN_SRC python drawer code
+vector_a  = np.array([1, 2, 4, 5])
+vector_b  = np.ones(4) * 2
+
+print(vector_a * vector_b)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[  1.   4.  16.  25.]
+:END:
+
+
+
+***** Operações com arrays 2D
+
+1. *, @, dot
+
+#+BEGIN_SRC python 
+A = np.array([[1, 2, 3, 5], [4, 5, 6, 5]])
+B = np.array([8, 9, 10, 1])
+c = 100
+
+print(A, B)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ 61 142]
+:END:
+
+***** Solução de sistemas lineares 
+
+1. linalg.solve()
+2. linalg.inv()
+3. linalg.det()
+4. linalg.eig()
+
+#+BEGIN_SRC python 
+A = np.array([[1, 2, 3], [4, 5, 6], [2, 5, 6]])
+B = np.array([8, 9, 10])
+
+# Solve Ax=B
+
+x = np.linalg.solve(A, B)
+x2 = np.linalg.inv(A) @ B
+print(np.linalg.det(A))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+6.0
+:END:
+
+
+***** Exercicio solução de sistema linear
+
+Resolver o sistema Ax = b
+
+A = [3, 4, 5]
+    [2, 1, 4]
+    [1, 5, 8]
+
+b = [1, 5, 9]
+
+Ax=b
+np.linalg.solve(A, b)
+np.array([[],[],[]])
+
+#+BEGIN_SRC python
+import numpy as np
+
+A = np.array([[3, 4, 5],
+              [2, 1, 4],
+              [1, 5, 8]])
+b = np.array([1, 5, 9])
+x = np.linalg.solve(A, b)
+print(x)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[-1.33333333 -1.66666667  2.33333333]
+:END:
+
+***** Solução do sistema linear
+
+#+BEGIN_SRC python
+import numpy as np
+
+A = np.array([[3, 4, 5],
+              [2, 1, 4],
+              [1, 5, 8]])
+b = np.array([1, 5, 9])
+
+x = np.linalg.solve(A, b)
+print(np.round(x, 2))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[-1.33 -1.67  2.33]
+:END:
+
+***** Exercício
+
+Fazer o produto interno de dois vetores
+
+a = [1, 2, 3, 4, 5]
+b = [3, 4, 5, 6, 7]
+
+
+***** Produto interno 
+
+#+BEGIN_SRC python 
+a = [1, 2, 3, 4, 5]
+b = [3, 4, 5, 6, 7]
+
+sum = 0
+for i in range(len(a)):
+    sum += a[i] * b[i]
+print(sum)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+85
+:END:
+
+
+***** Produto interno pythonic
+
+#+BEGIN_SRC python 
+a = [1, 2, 3, 4, 5]
+b = [3, 4, 5, 6, 7]
+
+sum = 0
+for x, y in zip(a, b):          
+    sum += x*y
+print(sum)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+85
+:END:
+
+
+***** Produto interno numpy
+
+#+BEGIN_SRC python 
+import numpy as np
+a = np.array([1, 2, 3, 4, 5])
+b = np.array([3, 4, 5, 6, 7])
+
+print(a*b)
+print(np.sum(a * b))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ 3  8 15 24 35]
+85
+:END:
+
+
+***** Produto interno álgebra linear
+
+#+BEGIN_SRC python 
+import numpy as np
+a = np.array([1, 2, 3, 4, 5])
+b = np.array([3, 4, 5, 6, 7])
+
+print(a @ b)
+print(np.dot(a, b))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+85
+85
+:END:
+
+
+***** Polinômios
+
+#+BEGIN_SRC python 
+import numpy as np
+
+print(np.roots([2, 0, -1, 20]))     # p[0] * x**n + p[1] * x**(n-1) + ... + p[n-1]*x + p[n]
+
+p = np.poly1d([1, 0, 1])        # definir um polinômio em uma variável
+print(p, '\n', np.roots(p), np.roots([1, 0, 1]))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[-2.23176245+0.j          1.11588122+1.79876978j  1.11588122-1.79876978j]
+   2
+1 x + 1 
+ [-0.+1.j  0.-1.j] [-0.+1.j  0.-1.j]
+:END:
+
+
+***** Diferenças finitas
+
+
+#+BEGIN_SRC python 
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 10)
+y = np.sin(x)
+dy_analy = np.cos(x)
+
+dy_numer = [0.0]*len(x)         # criando uma lista com tamanho certo
+
+for i in range(len(y) - 1):
+    dy_numer[i] = (y[i+1] - y[i])/(x[i+1] - x[i])
+
+dy_numer[-1] = (y[-1] - y[-2])/(x[-1] - x[-2])  # o ultimo termo
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+:END:
+
+
+***** Comparação
+
+#+BEGIN_SRC python
+%matplotlib inline
+import matplotlib.pyplot as plt
+
+plt.plot(x, dy_analy, '-r', label='analytical')
+plt.plot(x, dy_numer, '-b', label='forward')
+plt.legend(loc='lower left')
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[file:ipython-inline-images/ob-ipython-37efb377e871c81f87620bfdbeb64fdc.png]]
+:END:
+
+
+***** Integral
+
+#+BEGIN_SRC python
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([0, 0.5, 1, 1.5, 2])  # Conjunto de dados com 5 pontos
+y = np.array([0, .125, 1, 3.375, 8])
+
+plt.plot(x, y, 'x')
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[file:ipython-inline-images/ob-ipython-986a86f1e8ad10354cf013b3be3c4624.png]]
+:END:
+
+***** Exercício
+
+Resolver a integral pela regra trapezoidal
+
+x = np.array([0, 0.5, 1, 1.5, 2])
+y = np.array([0, .125, 1, 3.375, 8])
+
+***** Resposta
+
+#+BEGIN_SRC python
+import numpy as np
+
+x = np.array([0, 0.5, 1, 1.5, 2])
+y = np.array([0, .125, 1, 3.375, 8])
+
+int = 0
+for k in range(len(x)):
+    int += .5 * (y[k] + y[k+1]) * (x[k+1] - x[k])
+print(int)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+4.25
+:END:
+
+
+***** Integral
+
+#+BEGIN_SRC python 
+import numpy as np
+
+x = np.array([0, 0.5, 1, 1.5, 2])  # Conjunto de dados com 5 pontos
+y = x**3                        # integral x4/4 0 a 2 = 4
+
+integral = np.trapz(y, x)
+
+error = (integral - 4)/4
+
+print('Resultado {:.3f} com erro {:.3f}%'.format(integral, error*100))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+Resultado 4.250 com erro 6.250%
+:END:
+
+*** Matplotlib
+***** O que é?
+
+1. Biblioteca para plotar gráficos 2D (principalmete)
+2. Pode ser usada de duas maneiras
+   1. Pyplot --> módulo equivalente ao Matlab
+   2. OOP --> "pythonic way" 
+
+***** Pyplot interface --> Matlab equilavente
+
+#+BEGIN_SRC ipython :session :exports both :results output
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 20)
+y = np.sin(x)
+y2 = np.cos(x)
+
+plt.plot(x, y, 'o:', label='sin(x)')
+plt.plot(x, y2, 's--', label='cos(x)')
+
+plt.xlabel('x')
+plt.ylabel('y')
+
+plt.legend()
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+
+
+#+BEGIN_SRC python 
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 2*np.pi, 50)
+y = np.sin(x)
+fig, ax = plt.subfigs()
+ax.plot(x, y)
+
+y2 = np.cos(x)
+fig2, ax2 = plt.subfigs()
+ax2.plot(x, y2)
+
+# Configurações
+plt.xlabel('x Axis')            # Usa o Axes atual
+plt.ylabel('y Axis')
+plt.title('Plot de uma Senoide')
+plt.xlim(0, 2*np.pi)
+plt.ylim(-1, 1)
+plt.legend()          # lista de strings
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[file:ipython-inline-images/ob-ipython-eb2e174fbc27f4f14e442000ebf4be99.png]]
+:END:
+
+
+***** Exercício
+
+*Plotar a função*
+
+$f(x) = 3  \cos(5x + \pi/2) + \cos(4pi/5)$
+
+***** Exercício solução
+
+#+BEGIN_SRC python 
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 2*np.pi, 100)
+y = 3*np.cos(5*x + np.pi/2) + np.cos(4*np.pi/5)
+plt.plot(x, y, '-r', label='Exercicio')            # Cria Figure e Axes
+
+# Configurações
+plt.xlabel('x Axis')            # Usa o Axes atual
+plt.ylabel('y Axis')
+plt.title('Plot do Exercício')
+plt.xlim(0, 2*np.pi)
+# plt.ylim(-2, 2)
+plt.legend(loc=2)          # lista de strings
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[file:ipython-inline-images/ob-ipython-15357cc47fac3e694c1fd08bbfba8166.png]]
+:END:
+
+
+***** Plot de Iso-linhas usando o módulo Pyplot
+
+#+BEGIN_SRC python 
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 50)      # 1D array
+y = np.linspace(0, 10, 50)      # 1D array
+X, Y = np.meshgrid(x, y)        # 2D array
+Z = np.sin(X)**2 + np.sin(Y)**2 # Valor em cada ponto do plano (x,y)
+
+plt.contourf(X, Y, Z, cmap='plasma')
+plt.contour(X, Y, Z)
+
+# Configurações
+plt.xlabel('x Axis')
+plt.ylabel('y Axis')
+plt.title('Plot')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[file:ipython-inline-images/ob-ipython-7a35052bb14a3737651f27db8b0cd05b.png]]
+:END:
+
+***** Plot histograma
+
+#+BEGIN_SRC python
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+rv = np.random.normal(loc=20, scale=4, size=100000)
+weight = np.ones_like(rv)/float(len(rv))
+n, bins, _ = plt.hist(rv, bins=30, weights=weight)
+
+x = np.linspace(0, 40, 100)
+plt.plot(x, stats.norm.pdf(x, 20, 4), '-r')
+
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[file:ipython-inline-images/ob-ipython-cae4271b710a09989c98058f227ae766.png]]
+:END:
+
+
+
+*** Sympy
+***** Integration
+
+1. sp.integrate(f, x)
+2. sp.integrate(f, (x, 0, 1))
+3. .evalf(2) - aproximação numérica
+4. .subs({x: 2})
+
+
+#+BEGIN_SRC python drawer code
+import sympy as sp
+
+x = sp.Symbol('x')
+f = 4*x/(sp.pi*(1+x**2))
+sp.pprint(f)
+sp.pprint(sp.integrate(f, x).subs({x: 2}).evalf(2))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+   4⋅x    
+──────────
+  ⎛ 2    ⎞
+π⋅⎝x  + 1⎠
+1.0
+:END:
+
+
+
+***** Derivative
+
+#+BEGIN_SRC python drawer code
+import sympy as sp
+
+x = sp.Symbol('x')
+
+f = sp.pi*x**2
+
+sp.pprint(sp.diff(f, x, x, x))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+0
+:END:
+
+*** Pandas
+***** Revisao
+
+#+BEGIN_SRC python
+
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+:END:
+
+
+***** O que é?
+
+Biblioteca para criar dataframes
+
+series -> dataframe ->
+
+***** O que é um dataframe?
+
+1. data: numpy array, dict ou outro DF
+2. columns, index
+
+#+BEGIN_SRC python
+import pandas as pd
+import nqumpy as np
+
+dic = {'cidade': ['brasilia', 'sao paulo', 'rio de janeiro'],
+       'num de viagens': [1e5, 25e7, 13e6]}
+
+df = pd.DataFrame(dic)
+print(df)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+           cidade  num de viagens
+0        brasilia        100000.0
+1       sao paulo     250000000.0
+2  rio de janeiro      13000000.0
+:END:
+
+***** Load data
+
+df = pd.read_csv()
+df = pd.read_excel()
+df = pd.read_table()
+
+#+BEGIN_SRC python
+import pandas as pd
+df = pd.read_csv('c:/Users/Nasser/Desktop/data.csv')
+df['Value'].hist()
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[file:ipython-inline-images/ob-ipython-58280e643b7143a0f5977c8424e9b5e3.png]]
+:END:
+
+#+BEGIN_SRC python
+import pandas as pd
+import numpy as np
+np.random.seed(13)
+
+df = pd.DataFrame(np.random.randn(5, 3), columns=['A', 'B', 'C'], index=['a', 'b', 'c', 'd', 'e'])
+df.to_csv('c:/Users/Nasser/OneDrive/UNB/2017_1/Curso-Python/dia2/data.csv')
+print(df)
+df2 = pd.read_csv('c:/Users/Nasser/OneDrive/UNB/2017_1/Curso-Python/dia2/data.csv')
+df2 =df2.set_index('Unnamed: 0')
+print(df2)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+          A         B         C
+a -0.712391  0.753766 -0.044503
+b  0.451812  1.345102  0.532338
+c  1.350188  0.861211  1.478686
+d -1.045377 -0.788989 -1.261606
+e  0.562847 -0.243326  0.913741
+                   A         B         C
+Unnamed: 0                              
+a          -0.712391  0.753766 -0.044503
+b           0.451812  1.345102  0.532338
+c           1.350188  0.861211  1.478686
+d          -1.045377 -0.788989 -1.261606
+e           0.562847 -0.243326  0.913741
+:END:
+
+
+***** Extract data
+
+1. df['A'] - coluna
+2. df['a':'c'] - slicing de linha
+3. df.loc[linha, coluna] - selecionar por label
+4. df.iloc[linha, coluna] - selecionar por index
+
+
+#+BEGIN_SRC python
+import pandas as pd
+
+dic = {'cidade': ['brasilia', 'sao paulo', 'rio de janeiro'],
+       'num de viagens': [1e5, 25e7, 13e6]}
+
+df = pd.DataFrame(dic, index=['a', 'b', 'c'])
+print(df.loc['b', 'num de viagens'])
+#+END_SRC
+#+RESULTS:
+:RESULTS:
+250000000.0
+:END:
+
+***** Boolean index
+
+1. df[df > 1] - todos os valores > 1
+2. df[df['A'] > 1] - condição apenas na col A
+
+
+#+BEGIN_SRC python
+import pandas as pd
+import numpy as np
+
+data = np.array([[0.4, -.2, -1.5], [1.2, .17, .11], [.7, 1, .62], [.2, .54, 1], [.4, .23, .8]])
+
+df = pd.DataFrame(data, columns=['A', 'B', 'C'], index=list('abcde'))
+print(df)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+     A     B     C
+b  1.2  0.17  0.11
+:END:
+
+***** Describe
+
+1. mean, std
+1. describe
+
+
+#+BEGIN_SRC python
+import pandas as pd
+import numpy as np
+
+data = np.array([[0.4, -.2, -1.5], [1.2, .17, .11], [.7, 1, .62], [.2, .54, 1], [.4, .23, .8]])
+
+df = pd.DataFrame(data, columns=['A', 'B', 'C'], index=list('abcde'))
+print(df.std())
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+A    0.389872
+B    0.449411
+C    1.009247
+dtype: float64
+:END:
+
+***** Operações
+
+1. +, -, *, / - termo a termo
+2. somar colunas - df1.A = df1.A + df2.A
+3. somar células - df1.loc['a', 'A'] = df1.A[0] + df2.A[0]
+   
+#+BEGIN_SRC python
+import pandas as pd
+import numpy as np
+
+np.random.seed(100)
+df1 = pd.DataFrame(np.random.randn(5,3), columns=['A', 'B', 'C'], index=list('abcde'))
+
+np.random.seed(200)
+df2 = pd.DataFrame(np.random.randn(5,3), columns=['A', 'B', 'C'], index=list('abcde'))
+
+df1.iloc[0, 0] = df1.iloc[0, 0] * 10
+print(df1)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+           A         B         C
+a -17.497655  0.342680  1.153036
+b  -0.252436  0.981321  0.514219
+c   0.221180 -1.070043 -0.189496
+d   0.255001 -0.458027  0.435163
+e  -0.583595  0.816847  0.672721
+:END:
+
+
+
+*** Outros                                                       :noexport:
+***** Resultado
+
+#+BEGIN_SRC python :results output drawer code :exports both 
+class ContaBancaria:
+    def __init__(self, saldoinicial):
+        self.balanco = saldoinicial
+
+    def saque(self, quantia):
+        self.balanco -= quantia
+
+    def deposito(self, quantia):
+
+        self.balanco += quantia
+
+conta_da_maria = ContaBancaria()
+conta_da_maria.deposito()
+conta_da_maria.saque(2.5)
+print(conta_da_maria.balanco)
+#+END_SRC
+
+***** Conceitos gerais matplotlib OOP API
+
+1. Hierarquia
+
+[[file:img/curso-python-dia-2.org_20160804_085108_.png]]
+
+***** Criar Figure e Axes 
+
+
+#+BEGIN_SRC ipython :session :exports both :file img/plt_3.png
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt  # Usa o pyploy para criar o obj Figure apenas!
+
+fig, ax = plt.subplots()
+fig.set_facecolor('grey')
+ax.set_facecolor('yellow')
+#+END_SRC
+
+***** Figure contém os Axes filhos
+
+
+#+BEGIN_SRC ipython :session :exports both :file img/plt_4.png
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+
+fig = plt.figure()              
+ax1 = fig.add_axes([0.1, 0.1, 0.3, 0.3]) 
+ax2 = fig.add_axes([0.5, 0.5, 0.3, 0.3])
+fig.show()
+#+END_SRC
+
+
+***** E onde vejo os dados?
+
+1. Tudo que se vê dentro de um gráfico é chamado de *Artist*
+2. Os *Artist* são criados por /métodos/ do /objeto/ *Axes*
+
+
+***** Criando Artists
+
+#+BEGIN_SRC ipython :session :exports both :file img/plt_5.png
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 50)
+y = np.sin(x)
+
+fig = plt.figure()
+ax = fig.add_axes([.1, .1, .8, .8]) # [lc, bc, wi, he]
+
+ax.plot(x, y, '-r')             # método do objeto Axes
+
+# Configurações 
+ax.set_xlabel(r'$x$')
+ax.set_ylabel(r'$y$')
+#+END_SRC
+
+***** Vantagem da abordagem OOP
+
+#+BEGIN_SRC ipython :session :exports both :file img/plt_6.png
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 50)
+y = np.sin(x)
+
+fig = plt.figure()              # Pyplot para criar Figure
+# fig.set_facecolor('gray')
+
+ax1 = fig.add_axes([.1, .1, .8, .8])
+ax2 = fig.add_axes([.2, .55, .3, .3])
+
+ax1.plot(x, y, '-r')
+ax2.plot(x, y, '-b')
+ax2.set_facecolor('green')
+ax2.set_xlim(0, 1)              # Um detalhe
+fig.set_size_inches(8, 6)
+#+END_SRC
+
+***** 3 Dimensões - 2D arrays
+
+#+BEGIN_SRC ipython :session :exports both :file img/plt_7.png
+# %matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+x = np.linspace(0, 1)
+y = np.linspace(-2, 1)
+
+X, Y = np.meshgrid(x, y)        # 2D arrays
+Z = (X - 3)**2 + (Y + 1)**2     # Função do espaço (x, y)
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(X, Y, Z, cmap='viridis')  # Cria superfície
+fig.set_size_inches(15, 10)
+#+END_SRC
+
+
+***** 3 Dimensões Exemplo - 1D arrays
+
+#+BEGIN_SRC ipython :session :exports both :file img/plt_8.png
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+n_angles = 36
+n_radii = 8
+
+radii = np.linspace(0.125, 1.0, n_radii)  # raios
+angles = np.linspace(0, 2*np.pi, n_angles, endpoint=False)  # ângulos
+
+angles = np.repeat(angles[..., np.newaxis], n_radii, axis=1)
+
+x = np.append(0, (radii*np.cos(angles)).flatten())
+y = np.append(0, (radii*np.sin(angles)).flatten())
+
+z = np.sin(-x*y)                # multiplicação termo a termo
+
+fig = plt.figure()
+ax = Axes3D(fig)
+ax.plot_trisurf(x, y, z, cmap='viridis')  # Cira superfície
+fig.set_size_inches(10, 6)
+#+END_SRC
+
+
+***** Mayavi
+
+#+BEGIN_SRC python verbatim drawer code
+from numpy import pi, sin, cos, mgrid
+
+dphi, dtheta = pi/250.0, pi/250.0
+[phi,theta] = mgrid[0:pi+dphi*1.5:dphi, 0:2*pi+dtheta*1.5:dtheta]
+m0 = 4; m1 = 3; m2 = 2; m3 = 3; m4 = 6; m5 = 2; m6 = 6; m7 = 4;
+
+r = sin(m0*phi)**m1 + cos(m2*phi)**m3 + sin(m4*theta)**m5 + cos(m6*theta)**m7
+x = r*sin(phi)*cos(theta)
+y = r*cos(phi)
+z = r*sin(phi)*sin(theta)
+
+# View it.ex1
+from mayavi import mlab
+s = mlab.mesh(x, y, z)
+mlab.show()
+#+END_SRC
+
+#+DOWNLOADED: file:C%3A/Users/Nasser/OneDrive/UNB/2017_1/Curso-Python/Dia_2/img/plt-maya.png @ 2017-03-29 09:49:04
+[[file:img/plt-maya_2017-03-29_09-49-04.png]]
+
+***** Integral
+
+#+BEGIN_SRC python 
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([0, 0.5, 1, 1.5, 2])
+y = x**3
+
+x2 = np.linspace(0, 2, 50)
+y2 = x2**3
+
+plt.plot(x, y, '--x', label='5 pontos')
+plt.plot(x2, y2, label='50 pontos')
+plt.legend()
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[file:ipython-inline-images/ob-ipython-526fa8ad7fc1f1d950ed27acc44df037.png]]
+:END:
+
+***** Problema
+
+#+BEGIN_SRC python 
+M = np.zeros((3,3))
+print(M)
+gl = [0, 2]
+
+m = np.array([[10, 11], [12, 13]])
+print(m)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[ 0.  0.  0.]
+ [ 0.  0.  0.]
+ [ 0.  0.  0.]]
+[[10 11]
+ [12 13]]
+:END:
+
+***** Problema solução bruta
+
+#+BEGIN_SRC python 
+M = np.zeros((3,3))
+gl = [0, 2]
+m = np.array([[10, 11], [12, 13]])
+
+for i in range(len(gl)):        # loop em 0 e 1
+    for j in range(len(gl)):    # loop em 0 e 1
+        M[gl[i], gl[j]] = m[i, j]
+
+print(M)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[ 10.   0.  11.]
+ [  0.   0.   0.]
+ [ 12.   0.  13.]]
+:END:
+
+***** Problema pythonic
+
+#+BEGIN_SRC python 
+M = np.zeros((3,3))
+gl = [0, 2]
+m = np.array([[10, 11], [12, 13]])
+
+id = np.ix_(gl, gl)             # array (2, 1) e (1, 2)
+print(id)
+
+M[id] = m
+print(M)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+(array([[0],
+       [2]]), array([[0, 2]]))
+[[ 10.   0.  11.]
+ [  0.   0.   0.]
+ [ 12.   0.  13.]]
+:END:
+
+* Dia 3
+* Dia 4
