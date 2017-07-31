@@ -2,110 +2,27 @@
 #+title: Curso de Python
 #+email: nasser.alkmim@gmail.com
 #+options: toc:t
-#+OPTIONS: H:2
 
-* Conteúdo                                                              :TOC_5:
+* Conteúdo                                                              :TOC_3:
 - [[#dia-1][Dia 1]]
     - [[#introdução][Introdução]]
-        - [[#apresentação][Apresentação]]
-        - [[#por-que-aprender-programação][Por que aprender programação]]
-        - [[#python-é-usada-pra-que][Python é usada pra que?]]
-        - [[#python-é-popular-por-que][Python é popular, por que?]]
-        - [[#legível][Legível]]
-        - [[#python-popular-por-que][Python popular, por que?]]
-        - [[#ementa][Ementa]]
     - [[#cmd-e-interprete][cmd e interprete]]
-        - [[#exercício][Exercício]]
     - [[#tipos-em-python][Tipos em Python]]
-        - [[#tipos][Tipos]]
-        - [[#strings][Strings]]
-        - [[#formatar-strings][Formatar strings]]
-        - [[#strings-exercício][Strings exercício]]
     - [[#listasdicionários][Listas/Dicionários]]
-        - [[#o-que-são][O que são?]]
-        - [[#slicing][Slicing]]
-        - [[#operações][Operações]]
-        - [[#métodos-úteis][Métodos úteis]]
-        - [[#exercício-1][Exercício]]
-        - [[#exercício-2][Exercício]]
-        - [[#dicionários][Dicionários]]
-        - [[#dictionário-são-úteis][Dictionário são úteis]]
     - [[#condicional][Condicional]]
-        - [[#o-que-é][O que é?]]
-        - [[#boolean][Boolean]]
-        - [[#checar-vazios][Checar vazios]]
-        - [[#exercício-3][Exercício]]
     - [[#loops][Loops]]
-        - [[#for-loop][for loop]]
-        - [[#outros-iteráveis---zip-e-enumerate][Outros iteráveis - zip e enumerate]]
-        - [[#outros-iteráveis---dicionário][Outros iteráveis - dicionário]]
-        - [[#list-comprehension][List comprehension]]
-        - [[#exercício-4][Exercício]]
     - [[#ler-e-escrever-arquivos][Ler e escrever arquivos]]
     - [[#abrir-arquivos-alternativa-pythonica][Abrir arquivos alternativa Pythonica]]
-    - [[#funções][Funções]]
-        - [[#sintaxe][Sintaxe]]
-        - [[#exercício-5][Exercício]]
-    - [[#importar-módulos][Importar módulos]]
 - [[#dia-2][Dia 2]]
-    - [[#introdução-1][Introdução]]
-        - [[#ementa-1][Ementa]]
+    - [[#importar-módulos][Importar módulos]]
+    - [[#funções][Funções]]
     - [[#oop][OOP]]
-        - [[#o-que-é-oop][O que é OOP?]]
-        - [[#motivação][Motivação]]
-        - [[#motivação-2][Motivação 2]]
-        - [[#o-que-é-uma-classe][O que é uma *Classe*?]]
-        - [[#o-que-é-um-objeto-método-atributo][O que é um *objeto*, *método*, *atributo*?]]
-        - [[#o-que-é-o-parâmetro-self-e-o-método-__init__][O que é o parâmetro =self= e o método =__init__=?]]
-        - [[#como-fica-em-formato-de-classe][Como fica em formato de classe?]]
-        - [[#exemplo][Exemplo]]
-        - [[#exercício-6][Exercício]]
-    - [[#numpy][Numpy]]
-        - [[#o-que-é-numpy][O que é numpy?]]
-        - [[#como-usar][Como usar]]
-        - [[#criação-de-arrays][Criação de arrays]]
-        - [[#convertendo-lista-para-arrays][Convertendo lista para arrays]]
-        - [[#iniciando-arrays][Iniciando arrays]]
-        - [[#slicing-de-arrays-1d][Slicing de arrays 1D]]
-        - [[#slicing-de-arrays-2d][Slicing de arrays 2D]]
-        - [[#operando-arrays-1d][Operando arrays 1D]]
-        - [[#operações-com-arrays-2d][Operações com arrays 2D]]
-        - [[#solução-de-sistemas-lineares][Solução de sistemas lineares]]
-        - [[#exercicio-solução-de-sistema-linear][Exercicio solução de sistema linear]]
-        - [[#solução-do-sistema-linear][Solução do sistema linear]]
-        - [[#exercício-7][Exercício]]
-        - [[#produto-interno][Produto interno]]
-        - [[#produto-interno-pythonic][Produto interno pythonic]]
-        - [[#produto-interno-numpy][Produto interno numpy]]
-        - [[#produto-interno-álgebra-linear][Produto interno álgebra linear]]
-        - [[#polinômios][Polinômios]]
-        - [[#diferenças-finitas][Diferenças finitas]]
-        - [[#comparação][Comparação]]
-        - [[#integral][Integral]]
-        - [[#exercício-8][Exercício]]
-        - [[#resposta][Resposta]]
-        - [[#integral-1][Integral]]
-    - [[#matplotlib][Matplotlib]]
-        - [[#o-que-é-1][O que é?]]
-        - [[#pyplot-interface----matlab-equilavente][Pyplot interface --> Matlab equilavente]]
-        - [[#exercício-9][Exercício]]
-        - [[#exercício-solução][Exercício solução]]
-        - [[#plot-de-iso-linhas-usando-o-módulo-pyplot][Plot de Iso-linhas usando o módulo Pyplot]]
-        - [[#plot-histograma][Plot histograma]]
-    - [[#sympy][Sympy]]
-        - [[#integration][Integration]]
-        - [[#derivative][Derivative]]
-    - [[#pandas][Pandas]]
-        - [[#revisao][Revisao]]
-        - [[#o-que-é-2][O que é?]]
-        - [[#o-que-é-um-dataframe][O que é um dataframe?]]
-        - [[#load-data][Load data]]
-        - [[#extract-data][Extract data]]
-        - [[#boolean-index][Boolean index]]
-        - [[#describe][Describe]]
-        - [[#operações-1][Operações]]
 - [[#dia-3][Dia 3]]
+    - [[#numpy][Numpy]]
+    - [[#matplotlib][Matplotlib]]
 - [[#dia-4][Dia 4]]
+    - [[#sympy][Sympy]]
+    - [[#pandas][Pandas]]
 
 * Dia 1
 *** Introdução
@@ -178,6 +95,8 @@ Testar as operações básicas
 3. /
 4. *
 5. **
+6. %
+
 
 
 
@@ -282,6 +201,7 @@ print(lista1*2)
 1. len() -> tamanho da lista
 2. método index() e "in-place" sort()
 3. dir() -> mostra todos os atributos
+4. append() e extend()
 
 #+BEGIN_SRC python
 lista = [[78, 20, 65], [203, 30, 2]]
@@ -289,9 +209,7 @@ print(len(lista))
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-3
-:END:
+: 2
 
 
 ***** Exercício
@@ -333,9 +251,7 @@ print(material)                 # coments
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-{'E': 1000000000.0, 'nu': 0.2, 'alpha': 1e-05, 'beta': 100.0}
-:END:
+: {'E': 1000000000.0, 'nu': 0.2, 'alpha': 1e-05, 'beta': 100.0}
 
 
 ***** Dictionário são úteis
@@ -348,20 +264,18 @@ domicilio = {'num': 10, 'pessoas': [2, 1], 'renda': 100}
 domicilio2 = {'num': 10, 'pessoas': 3, 'renda': 100}
 
 lista = [domicilio, domicilio2]
-print(lista[0]['pessoas'][0])
+print(lista)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-2
-:END:
+: [{'num': 10, 'pessoas': [2, 1], 'renda': 100}, {'num': 10, 'pessoas': 3, 'renda': 100}]
 
 
 *** Condicional
 ***** O que é?
 
 1. if/elif/else
-2. sintax, notar a identação do bloco
+2. sintax, *notar a identação do bloco*
 
 #+BEGIN_SRC python
 if 2 < 1:
@@ -370,17 +284,10 @@ elif 2 == 2:
     print('teste 2')
 else:
     print('caso contrario')
-
-x = 'var'
-print('\n', x)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-teste 2
-
- var
-:END:
+: teste 2
 
 
 ***** Boolean
@@ -400,22 +307,52 @@ else:
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-x é maior que 5 e divisível por 3
-:END:
+: x é maior que 5 e divisível por 3
+***** Checar se elemento está incluso
+
+1. in
+
+#+BEGIN_SRC python
+lista = [20, 30, 50, 100]
+
+if 100 in lista:
+    print('esse item esta na lista no indice {}'.format(lista.index(100)))
+#+END_SRC
+
+#+RESULTS:
+: esse item esta na lista no indice 3
+***** Exercicio
+
+Dado a lista 
+
+=l = list(range(10))=
+
+checar se 5 está incluso em l e imprimir o índice de 5, depois alterar o valor para 50.
+
+1. Usar =in=  e =.index()=
+2. imprimir com =.format()=
+3. imprimir no final a lista atualizada
+
+#+BEGIN_SRC python
+l = list(range(10))
+#+END_SRC
+
+#+RESULTS:
 
 ***** Checar vazios
 
 #+BEGIN_SRC python
 l = []
-if l == []:
-   print('essa lista está vazia')
+if l:
+   print('lista nao vazia')
+else:
+    print('lista vazia')
+
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-essa lista está vazia
-:END:
+: lista nao vazia
+: [10]
 
 ***** Exercício
 
@@ -426,7 +363,7 @@ int()
 
 
 *** Loops
-***** for loop
+***** =for= loop
 
 1. sintaxe (notar espaços)
 2. qualquer iteravel
@@ -434,21 +371,71 @@ int()
 
 
 #+BEGIN_SRC python
-iteravel
+iteravel = [1, 2, 3]
 for i in iteravel:
     print(i)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-0
-1
-2
-3
-4
-:END:
+: 1
+: 2
+: 3
 
-***** Outros iteráveis - zip e enumerate
+***** =break=, =continue= e =pass=
+
+1. =break=: pula para o próximo loop
+2. =continue=: pula para o inicio do loop
+   
+#+BEGIN_SRC python
+for i in range(5):
+    a = i
+    if i % 2 == 0:
+        print(i**2)
+        continue
+    else:
+        a = i*100
+        print(a)
+#+END_SRC
+
+#+RESULTS:
+: 0
+: 100
+: 4
+: 300
+: 16
+
+***** =while= loops
+
+#+BEGIN_SRC python
+x = 10
+while x > 1:
+    x -= 1
+    print(x)
+    if x % 2 == 0:
+        x += 10
+        continue
+    if x % 7 == 0:
+        print(x)
+        break
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+9
+8
+17
+16
+25
+24
+33
+32
+41
+40
+49
+49
+#+end_example
+
+***** Outros iteráveis - =zip= e =enumerate=
 
 1. operações entre duas listas
 
@@ -461,13 +448,10 @@ for i, j in zip(lista1, lista2):
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[(2, 20), (3, 30), (4, 40), (5, 50)]
-2 20
-3 30
-4 40
-5 50
-:END:
+: 2 20
+: 3 30
+: 4 40
+: 5 50
 
 
 ***** Outros iteráveis - dicionário
@@ -482,10 +466,9 @@ for marca, [num, pais] in dic.items():
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-toyota 1000000.0 japao
-bmw 10000.0 alemanha
-:END:
+: toyota 1000000.0 japao
+: bmw 10000.0 alemanha
+
 ***** List comprehension
 
 1. inline loops
@@ -513,7 +496,6 @@ Resposta esperada: 'Receita leva 500 ml de leite'
 E depois saber se leva farinha.
 *** Ler e escrever arquivos
 
-
 1. Criar um arquivo de textos
 2. Usar open() com 'r' e 'w'
 3. Fechar com método .close()
@@ -533,6 +515,11 @@ with open('filename', 'r') as file_handle:
     print(data)
 #+END_SRC
 
+* Dia 2
+*** Importar módulos
+
+1. math, numpy, sys
+2. criar o proprio módulo que pega uma lista e recupera a soma dos termos ao quadrado.
 *** Funções
 ***** Sintaxe
 1. sintaxe
@@ -571,20 +558,6 @@ testar com:
 vetor = [4, 5, 8, 9]
 
 
-*** Importar módulos
-
-1. math, numpy, sys
-2. criar o proprio módulo que pega uma lista e recupera a soma dos termos ao quadrado.
-* Dia 2
-*** Introdução
-***** Ementa
-Nesse módulo serão tratados os seguintes assuntos:
-
-1. Loop
-2. Numpy
-3. Matplotlib
-4. Sympy
-5. Pandas
 *** OOP
 ***** O que é OOP?
 
@@ -729,6 +702,7 @@ Testar:
 - imprimir o balanço final
 
 
+* Dia 3
 *** Numpy
 ***** O que é numpy?
 
@@ -1093,7 +1067,7 @@ dy_numer[-1] = (y[-1] - y[-2])/(x[-1] - x[-2])  # o ultimo termo
 ***** Comparação
 
 #+BEGIN_SRC python
-%matplotlib inline
+
 import matplotlib.pyplot as plt
 
 plt.plot(x, dy_analy, '-r', label='analytical')
@@ -1111,7 +1085,7 @@ plt.show()
 ***** Integral
 
 #+BEGIN_SRC python
-%matplotlib inline
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1182,9 +1156,9 @@ Resultado 4.250 com erro 6.250%
    1. Pyplot --> módulo equivalente ao Matlab
    2. OOP --> "pythonic way" 
 
-***** Pyplot interface --> Matlab equilavente
+***** Pyplot interface:  Matlab equilavente
 
-#+BEGIN_SRC ipython :session :exports both :results output
+#+BEGIN_SRC python
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -1205,46 +1179,15 @@ plt.show()
 #+RESULTS:
 
 
-#+BEGIN_SRC python 
-%matplotlib inline
-import numpy as np
-import matplotlib.pyplot as plt
-
-x = np.linspace(0, 2*np.pi, 50)
-y = np.sin(x)
-fig, ax = plt.subfigs()
-ax.plot(x, y)
-
-y2 = np.cos(x)
-fig2, ax2 = plt.subfigs()
-ax2.plot(x, y2)
-
-# Configurações
-plt.xlabel('x Axis')            # Usa o Axes atual
-plt.ylabel('y Axis')
-plt.title('Plot de uma Senoide')
-plt.xlim(0, 2*np.pi)
-plt.ylim(-1, 1)
-plt.legend()          # lista de strings
-plt.show()
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-[[file:ipython-inline-images/ob-ipython-eb2e174fbc27f4f14e442000ebf4be99.png]]
-:END:
-
-
 ***** Exercício
 
-*Plotar a função*
+Plotar:
 
 $f(x) = 3  \cos(5x + \pi/2) + \cos(4pi/5)$
 
 ***** Exercício solução
 
 #+BEGIN_SRC python 
-%matplotlib inline
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1259,18 +1202,17 @@ plt.title('Plot do Exercício')
 plt.xlim(0, 2*np.pi)
 # plt.ylim(-2, 2)
 plt.legend(loc=2)          # lista de strings
+plt.show()
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[[file:ipython-inline-images/ob-ipython-15357cc47fac3e694c1fd08bbfba8166.png]]
-:END:
 
 
 ***** Plot de Iso-linhas usando o módulo Pyplot
 
+1. $z(x, y) = \sin(x)^{2} + \sin(y)^{2}$
+
 #+BEGIN_SRC python 
-%matplotlib inline
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1279,24 +1221,23 @@ y = np.linspace(0, 10, 50)      # 1D array
 X, Y = np.meshgrid(x, y)        # 2D array
 Z = np.sin(X)**2 + np.sin(Y)**2 # Valor em cada ponto do plano (x,y)
 
-plt.contourf(X, Y, Z, cmap='plasma')
+c = plt.contourf(X, Y, Z, cmap='jet')
 plt.contour(X, Y, Z)
+cbar = plt.colorbar(c)
+cbar.set_label('label')
 
 # Configurações
 plt.xlabel('x Axis')
 plt.ylabel('y Axis')
 plt.title('Plot')
+plt.show()
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[[file:ipython-inline-images/ob-ipython-7a35052bb14a3737651f27db8b0cd05b.png]]
-:END:
 
 ***** Plot histograma
 
 #+BEGIN_SRC python
-%matplotlib inline
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
@@ -1318,6 +1259,13 @@ plt.show()
 
 
 
+***** Conceitos gerais matplotlib OOP API
+
+1. Hierarquia
+
+[[file:img/curso-python-dia-2.org_20160804_085108_.png]]
+
+* Dia 4
 *** Sympy
 ***** Integration
 
@@ -1585,17 +1533,11 @@ conta_da_maria.saque(2.5)
 print(conta_da_maria.balanco)
 #+END_SRC
 
-***** Conceitos gerais matplotlib OOP API
-
-1. Hierarquia
-
-[[file:img/curso-python-dia-2.org_20160804_085108_.png]]
-
 ***** Criar Figure e Axes 
 
 
 #+BEGIN_SRC ipython :session :exports both :file img/plt_3.png
-%matplotlib inline
+
 import numpy as np
 import matplotlib.pyplot as plt  # Usa o pyploy para criar o obj Figure apenas!
 
@@ -1608,7 +1550,7 @@ ax.set_facecolor('yellow')
 
 
 #+BEGIN_SRC ipython :session :exports both :file img/plt_4.png
-%matplotlib inline
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1628,7 +1570,7 @@ fig.show()
 ***** Criando Artists
 
 #+BEGIN_SRC ipython :session :exports both :file img/plt_5.png
-%matplotlib inline
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1648,7 +1590,7 @@ ax.set_ylabel(r'$y$')
 ***** Vantagem da abordagem OOP
 
 #+BEGIN_SRC ipython :session :exports both :file img/plt_6.png
-%matplotlib inline
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1671,7 +1613,7 @@ fig.set_size_inches(8, 6)
 ***** 3 Dimensões - 2D arrays
 
 #+BEGIN_SRC ipython :session :exports both :file img/plt_7.png
-# %matplotlib inline
+# 
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -1692,7 +1634,7 @@ fig.set_size_inches(15, 10)
 ***** 3 Dimensões Exemplo - 1D arrays
 
 #+BEGIN_SRC ipython :session :exports both :file img/plt_8.png
-%matplotlib inline
+
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -1737,13 +1679,13 @@ s = mlab.mesh(x, y, z)
 mlab.show()
 #+END_SRC
 
-#+DOWNLOADED: file:C%3A/Users/Nasser/OneDrive/UNB/2017_1/Curso-Python/Dia_2/img/plt-maya.png @ 2017-03-29 09:49:04
-[[file:img/plt-maya_2017-03-29_09-49-04.png]]
+#+RESULTS:
+
 
 ***** Integral
 
 #+BEGIN_SRC python 
-%matplotlib inline
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1827,5 +1769,3 @@ print(M)
  [ 12.   0.  13.]]
 :END:
 
-* Dia 3
-* Dia 4
