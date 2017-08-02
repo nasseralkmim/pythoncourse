@@ -13,9 +13,10 @@
     - [[#condicional][Condicional]]
     - [[#loops][Loops]]
 - [[#dia-2][Dia 2]]
-    - [[#importar-módulos][Importar módulos]]
     - [[#funções][Funções]]
+    - [[#importar-módulos][Importar módulos]]
     - [[#oop][OOP]]
+    - [[#tratar-exceções-exceptions][Tratar exceções (exceptions)]]
 - [[#dia-3][Dia 3]]
     - [[#numpy][Numpy]]
     - [[#matplotlib][Matplotlib]]
@@ -24,6 +25,7 @@
     - [[#abrir-arquivos-alternativa-pythonica][Abrir arquivos alternativa Pythonica]]
     - [[#sympy][Sympy]]
     - [[#pandas][Pandas]]
+    - [[#pytest][Pytest]]
 
 * Dia 1
 *** Introdução
@@ -55,12 +57,11 @@
 ***** Legível
 
 #+BEGIN_SRC python
-if (10 > 2) is True:
+if (10 < 2) is True:
     print('ok')
 #+END_SRC
 
 #+RESULTS:
-: ok
 
 ***** Python popular, por que?
 
@@ -91,6 +92,7 @@ Baixar o Python no  [[https://www.python.org/downloads/][site oficial]].
 1. calculadora
 2. interpretar/rodar arquivos
    
+
 ***** Exercício
 
 Testar as operações básicas no cmd prompt
@@ -102,10 +104,6 @@ Testar as operações básicas no cmd prompt
 5. **
 6. %
 7. boolean (<, >, >=, !=, ==, is, not)
-
-
-
-
 
 *** Tipos em Python
 ***** Tipos
@@ -135,15 +133,11 @@ print(str, type(str))
 nome = 'Joao'
 idade = 22
 profissao = 'carpiteiro'
-# isso e um comentario 
-# print('seu nome é {} \te sua idade é {}'.format(nome, idade))
-print('Nome: {}\nIdade: {}\nProfissao: {}'.format(nome,idade,profissao))
+print('name: {}, age: {} \t , job: {}'.format(nome, idade, profissao))
 #+END_SRC
 
 #+RESULTS:
-: Nome: Joao
-: Idade: 22
-: Profissao: carpiteiro
+: name: Joao, age: 22 	 , job: carpiteiro
 
 
 ***** Strings exercício
@@ -158,14 +152,10 @@ Imprimir uma tabela com esses dados usando =\n= e =\t=
 1. o que pode entrar numa lista??
    
 #+BEGIN_SRC python
-lista = [1, 2, [20, 3], 'strings', (2, 3)]
-print(lista, type(lista))
+lista = [1, 30.5, 'casa', [100, 20 , [30, 'hh']]]
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[1, 2, [20, 3], 'strings', (2, 3)] <class 'list'>
-:END:
 
 ***** Slicing
 
@@ -176,21 +166,17 @@ print(lista, type(lista))
 
 #+BEGIN_SRC python
 lista = [0, 1, 2, 3, 4, 5, 6]
-lista2 = [[1, 1000, 1], [4, 4, 4]]
-lista2[0][1] = 2000
-print(lista2)
+lista[5] = 50
+print(lista)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[[1, 2000, 1], [4, 4, 4]]
-:END:
+: [0, 1, 2, 3, 4, 50, 6]
 
 ***** Operações
 
 1. soma de listas
 2. escalar * lista
-
 
 #+BEGIN_SRC python
 lista1 = [1, 2, 3]
@@ -199,9 +185,7 @@ print(lista1*2)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[1, 2, 3, 1, 2, 3]
-:END:
+: [1, 2, 3, 1, 2, 3]
 
 ***** Métodos úteis
 
@@ -211,21 +195,32 @@ print(lista1*2)
 4. append() e extend()
 
 #+BEGIN_SRC python
-lista = [[78, 20, 65], [203, 30, 2]]
-print(len(lista))
+lista = [10, 13, 14]
+l2 = [1.9, 1.8, 1.6]
 #+END_SRC
 
+
 #+RESULTS:
-: 2
+: [10, 13, 2744]
 
 
 ***** Exercício
 
 Dada a lista:
 
-=l = [3]*5=
+=l = [3.99]*5=
 
 Mudar o elemento de índice 3 para 10
+
+
+#+BEGIN_SRC python
+l = [3]*5
+l[3] = 10
+print(l)
+#+END_SRC
+
+#+RESULTS:
+: [3, 3, 3, 10, 3]
 
 ***** Exercício
 
@@ -233,12 +228,22 @@ Dada a lista:
 
 =l = [20, 33, 40, 100, 18, 38, 21, 10, 16]=
 
-Obter os elementos com índice ímpar até o termo de índice 10 (incluindo ele)
+Obter os elementos com índice ímpar até o termo 10 (incluindo ele)
 
 1. Usar =.index()= para encontrar o indice do termo 10
 2. Imprimir a lista usando 'slicing' de =l=
+3. =[inicio:fim:passo]= o inicio inclui o passo não
 
 Resultado: =l2 = [33, 100, 38, 10]=
+
+#+BEGIN_SRC python
+l = [20, 33, 40, 100, 18, 38, 21, 10, 16]
+l2 = l[1:l.index(10)+1:2]
+print(l2)
+#+END_SRC
+
+#+RESULTS:
+: [33, 100, 38, 10]
 
 
 ***** Dicionários
@@ -248,14 +253,12 @@ Resultado: =l2 = [33, 100, 38, 10]=
 
 #+BEGIN_SRC python
 dic = {'key': 'value'}
-# isso e um comentario
-material = {'E': 1e9, 'nu': 0.2, 'alpha': 1e-5}
-material['beta'] = 1e2
-print(material)                 # coments
+eng2pt = {'book': 'livro', 'table': 'mesa', 'chair': 'cadeira'}
+print(eng2pt['table'])
 #+END_SRC
 
 #+RESULTS:
-: {'E': 1000000000.0, 'nu': 0.2, 'alpha': 1e-05, 'beta': 100.0}
+: mesa
 
 
 ***** Dictionário são úteis
@@ -264,15 +267,15 @@ print(material)                 # coments
 2. listar keys() e items()
 
 #+BEGIN_SRC python
-domicilio = {'num': 10, 'pessoas': [2, 1], 'renda': 100}
+domicilio = {'num': 10, 'pessoas': 5, 'renda': 1000}
 domicilio2 = {'num': 10, 'pessoas': 3, 'renda': 100}
 
 lista = [domicilio, domicilio2]
-print(lista)
+print(domicilio.items())
 #+END_SRC
 
 #+RESULTS:
-: [{'num': 10, 'pessoas': [2, 1], 'renda': 100}, {'num': 10, 'pessoas': 3, 'renda': 100}]
+: dict_items([('num', 10), ('pessoas', 5), ('renda', 1000)])
 
 
 *** Condicional
@@ -284,14 +287,14 @@ print(lista)
 #+BEGIN_SRC python
 if 2 < 1:
     print('Essa afirmação é verdadeira')
-elif 2 == 2:
+elif 2 is 3:
     print('teste 2')
 else:
     print('caso contrario')
 #+END_SRC
 
 #+RESULTS:
-: teste 2
+: caso contrario
 
 
 ***** Boolean
@@ -339,24 +342,28 @@ checar se 5 está incluso em l e imprimir o índice de 5, depois alterar o valor
 
 #+BEGIN_SRC python
 l = list(range(10))
+print(l)
+if 5 in l:
+    ind = l.index(5)
+    l[ind] = 50
+print(l)
 #+END_SRC
 
 #+RESULTS:
+: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+: [0, 1, 2, 3, 4, 50, 6, 7, 8, 9]
 
 ***** Checar vazios
 
 #+BEGIN_SRC python
 l = []
-if l:
-   print('lista nao vazia')
-else:
-    print('lista vazia')
 
+if l:
+    print(l)
 #+END_SRC
 
 #+RESULTS:
-: lista nao vazia
-: [10]
+: []
 
 ***** Exercício
 
@@ -364,9 +371,12 @@ Usuário entra um número e o programa diz se é divisível por 2 ou não.
 
 1. Usar =input()=
 2. Lembrar que =input()= retorna =str=.
+3. =%= 
 
 
-
+#+BEGIN_SRC python
+user_var = int(input('Entre com um valor: '))
+#+END_SRC
 *** Loops
 ***** =for= loop
 
@@ -377,14 +387,23 @@ Usuário entra um número e o programa diz se é divisível por 2 ou não.
 
 #+BEGIN_SRC python
 iteravel = [1, 2, 3]
-for i in iteravel:
+for i in range(10):
     print(i)
 #+END_SRC
 
 #+RESULTS:
-: 1
-: 2
-: 3
+#+begin_example
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+#+end_example
 
 ***** =break=, =continue= e =pass=
 
@@ -392,22 +411,20 @@ for i in iteravel:
 2. =continue=: pula para o inicio do loop
    
 #+BEGIN_SRC python
-for i in range(5):
-    a = i
-    if i % 2 == 0:
+for i in range(1, 5):
+    if i % 5 == 0:
         print(i**2)
         continue
     else:
-        a = i*100
-        print(a)
+        pass
 #+END_SRC
 
 #+RESULTS:
-: 0
 : 100
-: 4
+: 200
 : 300
-: 16
+: 400
+
 ***** List comprehension
 
 1. inline loops
@@ -418,9 +435,7 @@ print(lista)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361]
-:END:
+: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361]
 
 ***** Exercicio
 
@@ -431,6 +446,16 @@ Dada a lista:
 escrever um script que cria uma lista com os os elementos de =a= menores que 5.
 
 Respota: =b = [1, 2, 1, 4, 2.5]=
+
+#+BEGIN_SRC python
+a = [1, 2, 1, 20, 30, 4, 2.5, 45]
+b = []
+for i in a:
+    
+#+END_SRC
+
+#+RESULTS:
+: [1, 2, 1, 4, 2.5]
 
 ***** =while= loops
 
@@ -472,14 +497,14 @@ lista1 = [2, 3, 4, 5]
 lista2 = [20, 30, 40, 50]
 
 for i, j in zip(lista1, lista2):
-    print(i, j)
+    print(i*j)
 #+END_SRC
 
 #+RESULTS:
-: 2 20
-: 3 30
-: 4 40
-: 5 50
+: 40
+: 90
+: 160
+: 250
 
 
 ***** Outros iteráveis - dicionário
@@ -501,13 +526,24 @@ for marca, [num, pais] in dic.items():
 
 Dado o dicionário:
 
-dic = {'ovo': [12, 'un'], 'leite': [500, 'ml'], 'farinha':[1, 'kg']}
+=dic = {'ovo': [12, 'un'], 'leite': [500, 'ml'], 'farinha':[1, 'kg']}=
 
 faça um teste para saber se a receita leva leite, e imprima o valor e a unidade.
 
 Resposta: ='Receita leva 500 ml de leite'=
 
 E depois saber se leva farinha.
+
+#+BEGIN_SRC python
+dic = {'ovo': [12, 'un'], 'leite': [500, 'ml'], 'farinha':[1, 'kg']}
+ingrediente = 'farinha'
+for ingr, [qt, un] in dic.items():
+    if ingr is ingrediente:
+        print('leva {}, quantidade {}{}'.format(ingr, qt, un))
+#+END_SRC
+
+#+RESULTS:
+: leva farinha, quantidade 1kg
 
 ***** Exercício
 
@@ -536,13 +572,26 @@ Dica:
 2. Usar dois loops separados
 
 * Dia 2
-*** Importar módulos
-
-1. math, numpy, sys
-2. criar o proprio módulo que pega uma lista e recupera a soma dos termos ao quadrado.
-   
 *** Funções
-***** Sintaxe
+***** O que é
+
+1. Um conjunto de *declarações* encapsuladas
+2. Um forma de organizar o código - DRY (don't repeat yourself)
+3. Facilitar na hora de encontrar errors (testar código)
+
+***** Construtor
+
+1. práticas de nomenclatura
+
+
+#+BEGIN_SRC python
+def nome_da_fucao(args):
+    return args*2
+#+END_SRC
+
+
+***** Exemplo
+
 1. sintaxe
 2. docstring
 3. default argumento 
@@ -576,8 +625,55 @@ Fazer uma função que calcula a soma dos termos ao quadrado de uma lista de tam
 
 testar com:
 
-vetor = [4, 5, 8, 9]
+=vetor = [4, 5, 8, 9]= 
 
+
+
+
+*** Importar módulos
+***** O que é um módulo?
+
+1. Um arquivo =.py= com código
+2. Útil para reutilizar e organizar código
+3. Um conjunto de módulos é um *pacote*
+
+***** Usar =import=
+
+1. testar com =import math=
+2. =math= define um "namespace" (onde as variáveis do programa livem)
+3. acesar as funções no módulo com =.=
+4. =factorial=, =cos=, =log=
+
+
+#+BEGIN_SRC python
+import math
+
+print(math.factorial(9))
+#+END_SRC
+
+#+RESULTS:
+: 362880
+
+***** =from= package =import= função
+
+1. Construção que evitar ter que prefixar as funções com o nome do pacote
+2. =from math import *= não é uma boa prática pois contamina o "namespace"
+
+#+BEGIN_SRC python
+from math import factorial, pi
+
+print(factorial(5)/pi)
+#+END_SRC
+
+#+RESULTS:
+: 38.197186342054884
+
+***** Import seu próprio módulo
+***** Baixar =numpy=, =matplotlib=, =pandas=
+
+1. =pip install numpy=
+2. =pip install matplotlib=
+3. =pip install pandas=
 
 *** OOP
 ***** O que é OOP?
@@ -585,6 +681,7 @@ vetor = [4, 5, 8, 9]
 1. Programação Orientada Objeto
 2. É uma técnica de estruturação do programa (modelagem)
 3. Utiliza o conceito de *Classes* e *Objetos*
+4. Encapsular *dados* e *funções* em um lugar só, no objeto
 
 ***** Motivação
 
@@ -605,6 +702,7 @@ salario1 = 10000
 salario2 = 12000
 salario3 = 8000
 #+END_SRC
+
 ***** Motivação 2
 
 Uma malha com coordenadas, conectividade, numero de nós, número de graus de liberdade, ...
@@ -616,10 +714,22 @@ Uma malha com coordenadas, conectividade, numero de nós, número de graus de li
 ***** O que é uma *Classe*?
 
 1. É um _construtor_ que define um tipo de dado
-2. Os dados ficam contidos num *container lógico*
+2. Criação da classe e *instanciação*
+3. Nomenclatura "CamelCase" PEP8 (Guia de Estilo)
+4. funções de objetos: métodos
+5. atributos
+   
+#+BEGIN_SRC python
+class NomeDaClasse:
+    pass
+   #+END_SRC
+
+***** Mais sobre classes
+
+1. Os dados ficam contidos num *container lógico*
+2. Contém as _instruções_ para criar um _objeto_
 3. Usar quando houver padrões de comportamento, qualidades e sentido nos dados
-4. Contém as _instruções_ para criar um _objeto_
-5. Permite a definição de *numenclatura* lógica - facilita a compreensão do código
+4. Permite a definição de *numenclatura* lógica - facilita a compreensão do código
 
 #+BEGIN_SRC python :exports code
 class NomeDaClasse:
@@ -653,9 +763,16 @@ print(objeto.novoatributo)
 ***** O que é o parâmetro =self= e o método =__init__=?
 
 1. =self= é a própria instância (objeto) criada pela classe
-2. =__init__= é um método que inicializa o objeto com atributos
-   1. quando a classe é instanciada o método __init__ é chamado
+2. Uma forma da classe se referir a si mesma
+3. =__init__()= é um método padrão das clases
+   1. quando a classe é instanciada o método =__init__()= é chamado
+   2. usar quando quiser criar um objeto com "atributos iniciais"
 
+#+BEGIN_SRC python
+class MyClass:
+    def __init__(self):
+        self.a = 2
+#+END_SRC
 
 ***** Como fica em formato de classe?
 
@@ -722,6 +839,52 @@ Testar:
 - Sacar 2,5 para almoçar
 - imprimir o balanço final
 
+*** Tratar exceções (exceptions)
+***** Construtor 
+
+1. =try= , =except= , =finally= e =else=
+
+#+BEGIN_SRC python
+try:
+    declaracao_qualquer[2] = 2
+except Exception:               # exceção que vc vai capturar
+    print('código que roda se o que você tentou falhou')
+else:
+    print('ok, o que vc tentou deu certo!')  # não muito utilizado
+finally:
+    print('finalmente, roda isso aqui')
+#+END_SRC
+
+#+RESULTS:
+: código que roda se o que você tentou falhou
+
+***** Exemplos
+
+1. Tentar acessar uma lista com =float=
+2. Tentar acessar um dicionário com uma chave não existente
+3. Importar um módulo não existente
+4. Dividir por zero
+5. só =except= não é recomendado: você não vai saber qual erro captou
+
+#+BEGIN_SRC python
+try:
+    v = 1/0
+except:
+    print('o que vc tentou falhou')
+#+END_SRC
+
+#+RESULTS:
+: o que vc tentou falhou
+
+***** Exercício
+
+Dado o dicionário:
+
+=dic = {'cor': 'azul', 'forma': 'circular', 'raio': 2}=
+
+tentar acessar a a chave =area=, e imprimir a mensagem que a chave não existe no dicionário.
+
+1. Usar a excessão =KeyError=
 
 * Dia 3
 *** Numpy
@@ -1467,25 +1630,18 @@ with open('filename', 'r') as file_handle:
 4. .subs({x: 2})
 
 
-#+BEGIN_SRC python drawer code
+#+BEGIN_SRC python
 import sympy as sp
 
 x = sp.Symbol('x')
 f = 4*x/(sp.pi*(1+x**2))
-sp.pprint(f)
-sp.pprint(sp.integrate(f, x).subs({x: 2}).evalf(2))
+print(f)
+print(sp.integrate(f, x))
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-   4⋅x    
-──────────
-  ⎛ 2    ⎞
-π⋅⎝x  + 1⎠
-1.0
-:END:
-
-
+: 4*x/(pi*(x**2 + 1))
+: 2*log(x**2 + 1)/pi
 
 ***** Derivative
 
@@ -1493,39 +1649,14 @@ sp.pprint(sp.integrate(f, x).subs({x: 2}).evalf(2))
 import sympy as sp
 
 x = sp.Symbol('x')
-
 f = sp.pi*x**2
-
-sp.pprint(sp.diff(f, x, x, x))
+sp.pprint(sp.diff(f, x))
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-0
-:END:
+: 0
 
 *** Pandas
-***** Revisao
-
-#+BEGIN_SRC python
-
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-:END:
-
-
 ***** O que é?
 
 Biblioteca para criar dataframes
@@ -1704,8 +1835,12 @@ e  -0.583595  0.816847  0.672721
 
 
 
-*** Outros                                                       :noexport:
-***** Resultado
+*** Pytest
+
+1. Test driven development
+
+* Outros                                                           :noexport:
+*** Resultado
 
 #+BEGIN_SRC python :results output drawer code :exports both 
 class ContaBancaria:
@@ -1725,7 +1860,7 @@ conta_da_maria.saque(2.5)
 print(conta_da_maria.balanco)
 #+END_SRC
 
-***** Integral
+*** Integral
 
 #+BEGIN_SRC python 
 
@@ -1748,7 +1883,7 @@ plt.legend()
 [[file:ipython-inline-images/ob-ipython-526fa8ad7fc1f1d950ed27acc44df037.png]]
 :END:
 
-***** Problema
+*** Problema
 
 #+BEGIN_SRC python 
 M = np.zeros((3,3))
@@ -1768,7 +1903,7 @@ print(m)
  [12 13]]
 :END:
 
-***** Problema solução bruta
+*** Problema solução bruta
 
 #+BEGIN_SRC python 
 M = np.zeros((3,3))
@@ -1789,7 +1924,7 @@ print(M)
  [ 12.   0.  13.]]
 :END:
 
-***** Problema pythonic
+*** Problema pythonic
 
 #+BEGIN_SRC python 
 M = np.zeros((3,3))
