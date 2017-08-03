@@ -13,6 +13,7 @@
     - [[#condicional][Condicional]]
     - [[#loops][Loops]]
 - [[#dia-2][Dia 2]]
+    - [[#revisão][Revisão]]
     - [[#funções][Funções]]
     - [[#importar-módulos][Importar módulos]]
     - [[#oop][OOP]]
@@ -572,7 +573,32 @@ Dica:
 2. Usar dois loops separados
 
 * Dia 2
+*** Revisão
+
+#+BEGIN_SRC python
+if 5 < 10:
+    print('Isso é verdade')
+for i in range(10):
+    print(i)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Isso é verdade
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+#+end_example
+
 *** Funções
+
 ***** O que é
 
 1. Um conjunto de *declarações* encapsuladas
@@ -585,9 +611,13 @@ Dica:
 
 
 #+BEGIN_SRC python
-def nome_da_fucao(args):
+def nome_da_funcao(args):
     return args*2
+print(nome_da_funcao('lista'))
 #+END_SRC
+
+#+RESULTS:
+: listalista
 
 
 ***** Exemplo
@@ -598,25 +628,19 @@ def nome_da_fucao(args):
 4. *args, **kwargs
    
 #+BEGIN_SRC python
-def soma_argumentos(arg1, arg2):
-    """Soma dois argumentos
-
-    Args:
-        arg1 (float): un numero
-
-    Return:
-        soma de dois numeros
-
-    """
-    return arg1 + arg2
+def soma_argumentos(*arg1, **kwargs):
+    soma = 0
+    for i in arg1:
+        soma += i
+    return soma**kwargs['potencia']/kwargs['div']
         
-print(soma_argumentos(arg2=2, arg1=30))
+soma = soma_argumentos(20, 30, 40, 40, 50, 60, 
+                       potencia=2, div=3)
+print(soma)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-32
-:END:
+: 19200.0
 
 
 ***** Exercício
@@ -625,10 +649,26 @@ Fazer uma função que calcula a soma dos termos ao quadrado de uma lista de tam
 
 testar com:
 
-=vetor = [4, 5, 8, 9]= 
+=vetor = [4, 5, 8, 9]=
+=vetor = [50, 20, 10, 30, 50]=
 
+#+BEGIN_SRC python
+def soma_do_quadrado(vetor):
+    """calcula o quadrado dos termos do vetor
+    Args:
+        vetor (list of floats): lista com numeros
+    Returns:
+        float 
+    """
+    soma = 0
+    for i in vetor:
+        soma = soma + i**2
+    return soma
+print(soma_do_quadrado([1, 2]))
+#+END_SRC
 
-
+#+RESULTS:
+: 5
 
 *** Importar módulos
 ***** O que é um módulo?
@@ -648,11 +688,11 @@ testar com:
 #+BEGIN_SRC python
 import math
 
-print(math.factorial(9))
+print(math.factorial(40))
 #+END_SRC
 
 #+RESULTS:
-: 362880
+: 815915283247897734345611269596115894272000000000
 
 ***** =from= package =import= função
 
@@ -660,7 +700,7 @@ print(math.factorial(9))
 2. =from math import *= não é uma boa prática pois contamina o "namespace"
 
 #+BEGIN_SRC python
-from math import factorial, pi
+from math import factorial, pi, log, cos, sin
 
 print(factorial(5)/pi)
 #+END_SRC
@@ -669,6 +709,9 @@ print(factorial(5)/pi)
 : 38.197186342054884
 
 ***** Import seu próprio módulo
+
+
+
 ***** Baixar =numpy=, =matplotlib=, =pandas=
 
 1. =pip install numpy=
@@ -703,6 +746,24 @@ salario2 = 12000
 salario3 = 8000
 #+END_SRC
 
+
+#+BEGIN_SRC python
+class Funcionario:
+    def __init__(self, nome, salario):
+        self.nome = nome
+        self.salario = salario
+    def calc_imposto(self):
+        return self.salario*12.9/100
+
+fun1 = Funcionario('Joao', 1000.5)
+fun2 = Funcionario('Mario', 1200.0)
+
+print(fun2.calc_imposto())
+#+END_SRC
+
+#+RESULTS:
+: 154.8
+
 ***** Motivação 2
 
 Uma malha com coordenadas, conectividade, numero de nós, número de graus de liberdade, ...
@@ -722,7 +783,19 @@ Uma malha com coordenadas, conectividade, numero de nós, número de graus de li
 #+BEGIN_SRC python
 class NomeDaClasse:
     pass
-   #+END_SRC
+
+funcionario = NomeDaClasse()
+funcionario.idade = 25
+funcionario.nome = 'Joao'
+
+def func(funcionario):
+    print(funcionario.idade, funcionario.nome)
+
+func(funcionario)
+    #+END_SRC
+
+#+RESULTS:
+: 25 Joao
 
 ***** Mais sobre classes
 
@@ -733,17 +806,17 @@ class NomeDaClasse:
 
 #+BEGIN_SRC python :exports code
 class NomeDaClasse:
-    'Docstring explica o que a classe cria'
-
     def __init__(self, atributo2):
-        'Inicia a classe'
         self.atributo = 'atributo da instância'
         self.novoatributo = atributo2
-
-objeto = NomeDaClasse('attr2')
+objeto = NomeDaClasse(1000)
 print(objeto.atributo)          # Depois do '.' acesso aos atributos/métodos
 print(objeto.novoatributo)
 #+END_SRC
+
+#+RESULTS:
+: atributo da instância
+: 1000
 
 ***** O que é um *objeto*, *método*, *atributo*?
 
@@ -821,10 +894,18 @@ class Dog:
 
 
 meu_cachorro = Dog('Euler', 'Poodle', 'Grey')  # Instânciei a classe e criei o objeto
-cachorro_da_marlete = Dog('Branca', 'XAXXAU', 'branca')
+cachorro_da_marlete = Dog('Branca', 'corgi', 'branca')
 
 print(cachorro_da_marlete.bark())
 #+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC python
+Branca barks!!!
+None
+#+END_SRC
+
+
 
 
 ***** Exercício 
@@ -839,24 +920,45 @@ Testar:
 - Sacar 2,5 para almoçar
 - imprimir o balanço final
 
+#+BEGIN_SRC python
+class Conta:
+    def __init__(self, saldo, dono):
+        self.saldo = saldo
+        self.dono = dono
+    def saque(self, valor):
+        self.saldo -= valor
+    def deposito(self, valor):
+        self.saldo += valor
+    def extrato(self):
+        print('O saldo do {}  é {}'.format(self.dono, self.saldo))
+minhaconta = Conta(0, 'Joao')
+minhaconta.saque(2.5)
+minhaconta.extrato()
+contadoze = Conta(-20000, 'José')
+contadoze.deposito(5000)
+contadoze.extrato()
+#+END_SRC
+
+#+RESULTS:
+: O saldo do Joao  é -2.5
+: O saldo do José  é -15000
+
 *** Tratar exceções (exceptions)
 ***** Construtor 
 
 1. =try= , =except= , =finally= e =else=
 
 #+BEGIN_SRC python
+lista= [50, 60, 1]
 try:
-    declaracao_qualquer[2] = 2
-except Exception:               # exceção que vc vai capturar
-    print('código que roda se o que você tentou falhou')
-else:
-    print('ok, o que vc tentou deu certo!')  # não muito utilizado
-finally:
-    print('finalmente, roda isso aqui')
+    lista[2] = 2
+except IndexError:
+    print('Sua lista náo tem indice 2')
+print(lista)
 #+END_SRC
 
 #+RESULTS:
-: código que roda se o que você tentou falhou
+: [50, 60, 2]
 
 ***** Exemplos
 
@@ -869,7 +971,7 @@ finally:
 #+BEGIN_SRC python
 try:
     v = 1/0
-except:
+except ZeroDivisionError:
     print('o que vc tentou falhou')
 #+END_SRC
 
@@ -892,20 +994,15 @@ tentar acessar a a chave =area=, e imprimir a mensagem que a chave não existe n
 
 1. Biblioteca para computação científica em Python.
 2. Um equivalente ao Matlab
-3. Operações matriciais/vetoriais
+3. Operações matriciais/vetoriais com *arrays* homogenos multidimensionais
 4. Kit para álgebra linear
 
 ***** Como usar
 
 1. Baixar a biblioteca
 
-#+BEGIN_EXAMPLE
-pip install numpy
-#+END_EXAMPLE
+=pip install numpy=
 
-#+BEGIN_EXAMPLE
-conda install numpy
-#+END_EXAMPLE
 
 2. Importar a biblioteca
 
@@ -915,35 +1012,35 @@ import numpy as np
 
 ***** Criação de arrays
 
-Arrays em 1D não são linha nem coluna
+1. Arrays de rank 1: 1 axis (eixo)
+2. o argumento de =np.array()= é uma lista!
 
 #+BEGIN_SRC python 
 import numpy as np
 vetor = np.array([1,2 , 3, 10, 20])
-
 print(vetor)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[ 1  2  3 10 20] <class 'numpy.ndarray'>
-:END:
+: [ 1  2  3 10 20]
 
+***** Criação de arrays 
 
+1. Rank 2, o primeiro axis tem tamanho 2 e o segundo 3
+2. Equivalente a uma matrix, primeiro axes são linhas e o segundo as colunas
+3. atributo transposta =.T=
 
 #+BEGIN_SRC python 
-
+import numpy as np
 matriz = np.array([[1, 2, 3],
                    [4, 5, 6]])
 print(matriz.T)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[[1 4]
- [2 5]
- [3 6]]
-:END:
+: [[1 4]
+:  [2 5]
+:  [3 6]]
 
 ***** Convertendo lista para arrays
 
@@ -956,29 +1053,40 @@ print(A, type(A))
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[[ 2  2  3]
- [10 22 32]] <class 'numpy.ndarray'>
-:END:
+: [[ 2  2  3]
+:  [10 22 32]] <class 'numpy.ndarray'>
+
+***** Exercício criar um array de rank 3
+
+Criar um array =arr= com:
+
+1. axis tamanho 2
+2. axis tamanho 3
+3. axis tamanho 2
+
+obs: os números podem ser aleatórios, sugestão: sequência 1,2,3...
+
+testar: =arr.shape=
+
+#+RESULTS:
+: (2, 3, 2)
+
+
 
 ***** Iniciando arrays 
 
-1. np.zeros()
-2. np.ones()
+1. =np.zeros()=
+2. =np.ones()=
+3. =np.linspace()=
+4. =np.arange()=
 
 #+BEGIN_SRC python 
 import numpy as np
 
-zero = np.ones(5)
-m_zeros = np.zeros((2, 2, 2))
-print(m_zeros[:, :, 1])
+arr = np.ones(5)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[[ 0.  0.]
- [ 0.  0.]]
-:END:
 
 
 
@@ -987,34 +1095,42 @@ print(m_zeros[:, :, 1])
 1. start:end:step
 
 #+BEGIN_SRC python 
-A = np.linspace(1, 10, 10)
-
-print(A[::2])
+import numpy as np
+A = np.linspace(1, 10, 3)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[ 1.  3.  5.  7.  9.]
-:END:
+: [  1.  10.]
 
 ***** Slicing de arrays 2D
 
 1. [linha, coluna]
+2. =random.rand(shape)= ~ U[0, 1]
+3. =np.round(número de casas decimais)=
 
 #+BEGIN_SRC python 
+import numpy as np
 np.random.seed(10)
 A = np.round(np.random.rand(5, 3), 1)
-print(A)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[[ 0.8  0.   0.6]
- [ 0.7  0.5  0.2]
- [ 0.2  0.8  0.2]
- [ 0.1  0.7  1. ]
- [ 0.   0.5  0.8]]
-:END:
+
+***** Exercício
+
+Pegar o array de rank =3= e shape =(2, 3, 2)= e modificar todos os elemento do eixo 1 para 99.
+
+Resultado:
+
+#+RESULTS:
+: [[[99 99]
+:   [99 99]
+:   [99 99]]
+: 
+:  [[ 7  8]
+:   [ 9 10]
+:   [11 12]]]
+
 
 ***** Operando arrays 1D
 
@@ -1022,6 +1138,7 @@ print(A)
 2. Vetorial
 
 #+BEGIN_SRC python drawer code
+import numpy as np
 vector_a  = np.array([1, 2, 4, 5])
 vector_b  = np.ones(4) * 2
 
@@ -1029,9 +1146,7 @@ print(vector_a * vector_b)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[  1.   4.  16.  25.]
-:END:
+: [  2.   4.   8.  10.]
 
 
 
@@ -1040,19 +1155,17 @@ print(vector_a * vector_b)
 1. *, @, dot
 
 #+BEGIN_SRC python 
+import numpy as np
 A = np.array([[1, 2, 3, 5], [4, 5, 6, 5]])
 B = np.array([8, 9, 10, 1])
 c = 100
-
-print(A, B)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[ 61 142]
-:END:
+: [[1 2 3 5]
+:  [4 5 6 5]] [ 8  9 10  1]
 
-***** Solução de sistemas lineares 
+***** Solução de sistemas lineares e Alg. Linear
 
 1. linalg.solve()
 2. linalg.inv()
@@ -1060,77 +1173,37 @@ print(A, B)
 4. linalg.eig()
 
 #+BEGIN_SRC python 
+import numpy as np
 A = np.array([[1, 2, 3], [4, 5, 6], [2, 5, 6]])
 B = np.array([8, 9, 10])
 
-# Solve Ax=B
-
 x = np.linalg.solve(A, B)
-x2 = np.linalg.inv(A) @ B
-print(np.linalg.det(A))
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-6.0
-:END:
 
 
 ***** Exercicio solução de sistema linear
 
 Resolver o sistema Ax = b
 
-A = [3, 4, 5]
-    [2, 1, 4]
-    [1, 5, 8]
+1. Criar os arrays com =np.array()=
+2. Usar =np.linalg.solve()= e comparar com o resultado invertendo a matrix com =np.linalg.inv()=
+
+#+BEGIN_EXAMPLE
+A = [[3, 4, 5],
+    [2, 1, 4],
+    [1, 5, 8]]
 
 b = [1, 5, 9]
-
-Ax=b
-np.linalg.solve(A, b)
-np.array([[],[],[]])
-
-#+BEGIN_SRC python
-import numpy as np
-
-A = np.array([[3, 4, 5],
-              [2, 1, 4],
-              [1, 5, 8]])
-b = np.array([1, 5, 9])
-x = np.linalg.solve(A, b)
-print(x)
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-[-1.33333333 -1.66666667  2.33333333]
-:END:
-
-***** Solução do sistema linear
-
-#+BEGIN_SRC python
-import numpy as np
-
-A = np.array([[3, 4, 5],
-              [2, 1, 4],
-              [1, 5, 8]])
-b = np.array([1, 5, 9])
-
-x = np.linalg.solve(A, b)
-print(np.round(x, 2))
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-[-1.33 -1.67  2.33]
-:END:
+#+END_EXAMPLE
 
 ***** Exercício
 
 Fazer o produto interno de dois vetores
 
-a = [1, 2, 3, 4, 5]
-b = [3, 4, 5, 6, 7]
+=a = [1, 2, 3, 4, 5]=
+=b = [3, 4, 5, 6, 7]=
 
 
 ***** Produto interno 
@@ -1207,28 +1280,43 @@ print(np.dot(a, b))
 
 ***** Polinômios
 
+1. p[0] * x**n + p[1] * x**(n-1) + ... + p[n-1]*x + p[n]
+2. np.poly1d()
+3. np.roots()
+   
 #+BEGIN_SRC python 
 import numpy as np
-
-print(np.roots([2, 0, -1, 20]))     # p[0] * x**n + p[1] * x**(n-1) + ... + p[n-1]*x + p[n]
-
-p = np.poly1d([1, 0, 1])        # definir um polinômio em uma variável
-print(p, '\n', np.roots(p), np.roots([1, 0, 1]))
+p = np.poly1d([1, 0, 1])        # definir um polinômio em uma 
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[-2.23176245+0.j          1.11588122+1.79876978j  1.11588122-1.79876978j]
-   2
-1 x + 1 
- [-0.+1.j  0.-1.j] [-0.+1.j  0.-1.j]
-:END:
 
 
 ***** Diferenças finitas
 
+Definição, derivada em $x$
 
-#+BEGIN_SRC python 
+$$\dfrac{\mathrm{d} v}{\mathrm{d} x} \approx \dfrac{v(x + \Delta x) - v(x)}{\Delta x}$$
+
+
+Supor $v(x)=sin(x)$
+
+#+BEGIN_SRC python
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 10)
+v = np.sin(x)
+
+Dx = 2*np.pi/9
+dvdx = []
+for vi_Dx, vi in zip(v[1:], v[:-1]):
+    dvdx.append((vi_Dx - vi)/Dx)
+#+END_SRC
+
+#+RESULTS:
+
+
+#+BEGIN_SRC python
 import numpy as np
 
 x = np.linspace(0, 2*np.pi, 10)
@@ -1244,26 +1332,6 @@ dy_numer[-1] = (y[-1] - y[-2])/(x[-1] - x[-2])  # o ultimo termo
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-:END:
-
-
-***** Comparação
-
-#+BEGIN_SRC python
-
-import matplotlib.pyplot as plt
-
-plt.plot(x, dy_analy, '-r', label='analytical')
-plt.plot(x, dy_numer, '-b', label='forward')
-plt.legend(loc='lower left')
-plt.show()
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-[[file:ipython-inline-images/ob-ipython-37efb377e871c81f87620bfdbeb64fdc.png]]
-:END:
 
 
 ***** Integral
@@ -1287,10 +1355,12 @@ plt.show()
 
 ***** Exercício
 
-Resolver a integral pela regra trapezoidal
+Resolver a integral pela regra trapezoidal:
 
-x = np.array([0, 0.5, 1, 1.5, 2])
-y = np.array([0, .125, 1, 3.375, 8])
+$$\int \approx \sum \dfrac{f(x) + f(x + \Delta x)}{2} \Delta x $$
+
+=x = np.array([0, 0.5, 1, 1.5, 2])=
+=y = np.array([0, .125, 1, 3.375, 8])=
 
 ***** Resposta
 
@@ -1300,16 +1370,16 @@ import numpy as np
 x = np.array([0, 0.5, 1, 1.5, 2])
 y = np.array([0, .125, 1, 3.375, 8])
 
-int = 0
-for k in range(len(x)):
-    int += .5 * (y[k] + y[k+1]) * (x[k+1] - x[k])
-print(int)
+intg = 0
+for k in range(len(x) - 1):
+    intg += .5 * (y[k] + y[k+1]) * (x[k+1] - x[k])
+print(intg)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-4.25
-:END:
+: 4.25
+
+
 
 
 ***** Integral
@@ -1328,9 +1398,7 @@ print('Resultado {:.3f} com erro {:.3f}%'.format(integral, error*100))
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-Resultado 4.250 com erro 6.250%
-:END:
+: Resultado 4.250 com erro 6.250%
 
 *** Matplotlib
 ***** O que é?
@@ -1367,7 +1435,7 @@ plt.show()
 
 Plotar:
 
-$f(x) = 3  \cos(5x + \pi/2) + \cos(4pi/5)$
+$f(x) = 3  \cos(5x + \pi/2) + \cos(4 \pi/5)$
 
 ***** Exercício solução
 
@@ -1418,30 +1486,44 @@ plt.show()
 #+END_SRC
 
 #+RESULTS:
+***** Exercício
+
+Definir a função:
+
+$f(x, y) = \left(1 - \dfrac{x}{2} + x^{5} + y^{3} \right) \mathrm{e}^{-x^{2} - y^2}$
+
+1. plotar usando =plt.contourf()= com 8 níveis
+2. plotar usando =plt.contour()= com 8 níveis
+3. criar os labels dos níveis =plt.clabel()=
+4. criar color bar com =plt.colorbar()=
+
+
+
 
 ***** Plot histograma
+
+1. Dados aleatórios =np.random.normal()=
+2. plotar histograma de frq. abs e rel com =plt.hist()=
+3. checar se os dados seguem distribuição normal =stats.mstats.normaltest()=
+4. plotar distribuição normal com =stats.norm.pdf(x, loc, scale)=
 
 #+BEGIN_SRC python
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
 
-rv = np.random.normal(loc=20, scale=4, size=100000)
-weight = np.ones_like(rv)/float(len(rv))
-n, bins, _ = plt.hist(rv, bins=30, weights=weight)
+rv = np.random.uniform(size=1000)  # qualquer dado!
+weight = np.ones_like(rv)/float(len(rv))  # freq relativa
+plt.hist(rv, bins=10, weights=weight)
 
-x = np.linspace(0, 40, 100)
-plt.plot(x, stats.norm.pdf(x, 20, 4), '-r')
 
 plt.show()
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[[file:ipython-inline-images/ob-ipython-cae4271b710a09989c98058f227ae766.png]]
-:END:
+: NormaltestResult(statistic=607.21325838488292, pvalue=1.3973856287041697e-132)
 
-
+Nota: p-value é a probabilidade de que o valor do chi-quadrado
 
 ***** Conceitos gerais matplotlib OOP API
 
@@ -1502,30 +1584,32 @@ plt.show()
 
 ***** Criar Figure e Axes 
 
-
-#+BEGIN_SRC ipython :session :exports both :file img/plt_3.png
-
+#+BEGIN_SRC python
 import numpy as np
 import matplotlib.pyplot as plt  # Usa o pyploy para criar o obj Figure apenas!
 
 fig, ax = plt.subplots()
 fig.set_facecolor('grey')
 ax.set_facecolor('yellow')
+plt.show()
 #+END_SRC
+
+#+RESULTS:
 
 ***** Figure contém os Axes filhos
 
+1. =.add_axes()= [ x_lowerleft, y_lowerleft, comprimento, altura]
+2. =plt.subplots(nrows, ncols)=
 
-#+BEGIN_SRC ipython :session :exports both :file img/plt_4.png
-
+#+BEGIN_SRC python
 import numpy as np
 import matplotlib.pyplot as plt
 
-fig = plt.figure()              
-ax1 = fig.add_axes([0.1, 0.1, 0.3, 0.3]) 
-ax2 = fig.add_axes([0.5, 0.5, 0.3, 0.3])
-fig.show()
+fig, ax = plt.subplots(nrows=2, ncols=2)
+plt.show()
 #+END_SRC
+
+#+RESULTS:
 
 
 ***** E onde vejo os dados?
@@ -1536,25 +1620,31 @@ fig.show()
 
 ***** Criando Artists
 
-#+BEGIN_SRC ipython :session :exports both :file img/plt_5.png
+1. subplots retorna 1 objeto =axes= ou um array de =axes=
+2. =fig.tight_layout()=
 
+#+BEGIN_SRC python
 import numpy as np
 import matplotlib.pyplot as plt
 
 x = np.linspace(0, 10, 50)
 y = np.sin(x)
 
-fig = plt.figure()
-ax = fig.add_axes([.1, .1, .8, .8]) # [lc, bc, wi, he]
+fig, ax = plt.subplots()
 
-ax.plot(x, y, '-r')             # método do objeto Axes
-
-# Configurações 
-ax.set_xlabel(r'$x$')
-ax.set_ylabel(r'$y$')
+plt.show()
 #+END_SRC
 
+#+RESULTS:
+
+***** Exercício
+
+
+
 ***** Vantagem da abordagem OOP
+
+1. Flexibilidade
+2. Passar axes para funções
 
 #+BEGIN_SRC python
 import numpy as np
@@ -1580,13 +1670,15 @@ plt.show()
 ***** Mayavi
 
 #+BEGIN_SRC python
-from numpy import pi, sin, cos, mgrid
+from numpy import linspace, meshgrid, pi, sin, cos
 
-dphi, dtheta = pi/250.0, pi/250.0
-[phi,theta] = mgrid[0:pi+dphi*1.5:dphi, 0:2*pi+dtheta*1.5:dtheta]
 m0 = 4; m1 = 3; m2 = 2; m3 = 3; m4 = 6; m5 = 2; m6 = 6; m7 = 4;
 
+phi = linspace(0, pi)
+theta = linspace(0, 2*pi)
+phi, theta = meshgrid(phi, theta)
 r = sin(m0*phi)**m1 + cos(m2*phi)**m3 + sin(m4*theta)**m5 + cos(m6*theta)**m7
+
 x = r*sin(phi)*cos(theta)
 y = r*cos(phi)
 z = r*sin(phi)*sin(theta)
