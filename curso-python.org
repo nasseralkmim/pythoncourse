@@ -22,10 +22,11 @@
     - [[#numpy][Numpy]]
     - [[#matplotlib][Matplotlib]]
 - [[#dia-4][Dia 4]]
+    - [[#matplotlib-continuação][Matplotlib Continuação]]
     - [[#ler-e-escrever-arquivos][Ler e escrever arquivos]]
     - [[#abrir-arquivos-alternativa-pythonica][Abrir arquivos alternativa Pythonica]]
-    - [[#sympy][Sympy]]
     - [[#pandas][Pandas]]
+    - [[#sympy][Sympy]]
     - [[#pytest][Pytest]]
 
 * Dia 1
@@ -1003,7 +1004,6 @@ tentar acessar a a chave =area=, e imprimir a mensagem que a chave não existe n
 
 =pip install numpy=
 
-
 2. Importar a biblioteca
 
 #+BEGIN_SRC python
@@ -1017,12 +1017,11 @@ import numpy as np
 
 #+BEGIN_SRC python 
 import numpy as np
-vetor = np.array([1,2 , 3, 10, 20])
+vetor = np.array([1, 2 , 3, 10, 20])
 print(vetor)
 #+END_SRC
 
 #+RESULTS:
-: [ 1  2  3 10 20]
 
 ***** Criação de arrays 
 
@@ -1032,15 +1031,16 @@ print(vetor)
 
 #+BEGIN_SRC python 
 import numpy as np
-matriz = np.array([[1, 2, 3],
-                   [4, 5, 6]])
-print(matriz.T)
+matriz = np.array([[20, 10, 30], 
+                   [19, 29, 39]])
+print(matriz)
+print(matriz.shape)
 #+END_SRC
 
 #+RESULTS:
-: [[1 4]
-:  [2 5]
-:  [3 6]]
+: [[20 10 30]
+:  [19 29 39]]
+: (2, 3)
 
 ***** Convertendo lista para arrays
 
@@ -1071,6 +1071,21 @@ testar: =arr.shape=
 #+RESULTS:
 : (2, 3, 2)
 
+#+BEGIN_SRC python
+import numpy as np
+arr = [
+[[1, 2],
+[3, 4],
+[5, 6]],
+[[7, 8],
+[9, 10],
+[11, 12]]]
+arr = np.array(arr)
+print(arr.shape)
+#+END_SRC
+
+#+RESULTS:
+: (2, 3, 2)
 
 
 ***** Iniciando arrays 
@@ -1083,10 +1098,12 @@ testar: =arr.shape=
 #+BEGIN_SRC python 
 import numpy as np
 
-arr = np.ones(5)
+arr = np.arange(0, 10, 20)
+print(arr)
 #+END_SRC
 
 #+RESULTS:
+: [0]
 
 
 
@@ -1096,11 +1113,14 @@ arr = np.ones(5)
 
 #+BEGIN_SRC python 
 import numpy as np
-A = np.linspace(1, 10, 3)
+A = np.linspace(0, 10, 11)
+print(A)
+print(A[2:5])
 #+END_SRC
 
 #+RESULTS:
-: [  1.  10.]
+: [  0.   1.   2.   3.   4.   5.   6.   7.   8.   9.  10.]
+: [ 2.  3.  4.]
 
 ***** Slicing de arrays 2D
 
@@ -1112,9 +1132,20 @@ A = np.linspace(1, 10, 3)
 import numpy as np
 np.random.seed(10)
 A = np.round(np.random.rand(5, 3), 1)
+print(A)
+print(A[0:4, 0:2])
 #+END_SRC
 
 #+RESULTS:
+: [[ 0.8  0.   0.6]
+:  [ 0.7  0.5  0.2]
+:  [ 0.2  0.8  0.2]
+:  [ 0.1  0.7  1. ]
+:  [ 0.   0.5  0.8]]
+: [[ 0.8  0. ]
+:  [ 0.7  0.5]
+:  [ 0.2  0.8]
+:  [ 0.1  0.7]]
 
 ***** Exercício
 
@@ -1131,6 +1162,28 @@ Resultado:
 :   [ 9 10]
 :   [11 12]]]
 
+#+BEGIN_SRC python
+import numpy as np
+arr = [
+[[1, 2],
+[3, 4],
+[5, 6]],
+[[7, 8],
+[9, 10],
+[11, 12]]]
+arr = np.array(arr)
+arr[0, :, :] = 99
+print(arr)
+#+END_SRC
+
+#+RESULTS:
+: [[[99 99]
+:   [99 99]
+:   [99 99]]
+: 
+:  [[ 7  8]
+:   [ 9 10]
+:   [11 12]]]
 
 ***** Operando arrays 1D
 
@@ -1141,12 +1194,11 @@ Resultado:
 import numpy as np
 vector_a  = np.array([1, 2, 4, 5])
 vector_b  = np.ones(4) * 2
-
-print(vector_a * vector_b)
+print(vector_a )
 #+END_SRC
 
 #+RESULTS:
-: [  2.   4.   8.  10.]
+: [ 1  4 16 25]
 
 
 
@@ -1158,12 +1210,10 @@ print(vector_a * vector_b)
 import numpy as np
 A = np.array([[1, 2, 3, 5], [4, 5, 6, 5]])
 B = np.array([8, 9, 10, 1])
-c = 100
+D = np.array([2, 2, 2, 2])
 #+END_SRC
 
 #+RESULTS:
-: [[1 2 3 5]
-:  [4 5 6 5]] [ 8  9 10  1]
 
 ***** Solução de sistemas lineares e Alg. Linear
 
@@ -1176,11 +1226,18 @@ c = 100
 import numpy as np
 A = np.array([[1, 2, 3], [4, 5, 6], [2, 5, 6]])
 B = np.array([8, 9, 10])
-
+# Ax = B
 x = np.linalg.solve(A, B)
+print(np.linalg.eig(A))
 #+END_SRC
 
 #+RESULTS:
+: (array([ 12.28398289+0.j       ,  -0.14199144+0.6843094j,
+:         -0.14199144-0.6843094j]), array([[ 0.29686505+0.j        , -0.15208268+0.40688012j,
+:         -0.15208268-0.40688012j],
+:        [ 0.69896424+0.j        ,  0.71615271+0.j        ,  0.71615271-0.j        ],
+:        [ 0.65063056+0.j        , -0.51235340-0.18957508j,
+:         -0.51235340+0.18957508j]]))
 
 
 ***** Exercicio solução de sistema linear
@@ -1197,6 +1254,21 @@ A = [[3, 4, 5],
 
 b = [1, 5, 9]
 #+END_EXAMPLE
+#+BEGIN_SRC python
+import numpy as np
+A = np.array([[3, 4, 5],
+              [2, 1, 4],
+              [1, 5, 8]])
+
+b = np.array([[1, 5, 9]])
+x = np.linalg.solve(A, b.T)
+print(x)
+#+END_SRC
+
+#+RESULTS:
+: [[-1.33333333]
+:  [-1.66666667]
+:  [ 2.33333333]]
 
 ***** Exercício
 
@@ -1205,6 +1277,22 @@ Fazer o produto interno de dois vetores
 =a = [1, 2, 3, 4, 5]=
 =b = [3, 4, 5, 6, 7]=
 
+#+BEGIN_SRC python
+import numpy as np
+def produto_escalar(v1, v2):
+    """Retornar uma escalar """
+    soma = 0
+    for i, j in zip(v1, v2):
+        soma += i * j
+    return soma
+a = np.array([1, 2, 3, 4, 5])
+b = np.array([3, 4, 5, 6, 7])
+prod = produto_escalar(a, b)
+print(prod)    
+#+END_SRC
+
+#+RESULTS:
+: 85
 
 ***** Produto interno 
 
@@ -1219,9 +1307,12 @@ print(sum)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-85
-:END:
+: 0
+: 1
+: 2
+: 3
+: 4
+: 85
 
 
 ***** Produto interno pythonic
@@ -1231,15 +1322,13 @@ a = [1, 2, 3, 4, 5]
 b = [3, 4, 5, 6, 7]
 
 sum = 0
-for x, y in zip(a, b):          
-    sum += x*y
+for ai, bi in zip(a, b):          
+    sum += ai*bi
 print(sum)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-85
-:END:
+: 85
 
 
 ***** Produto interno numpy
@@ -1251,13 +1340,13 @@ b = np.array([3, 4, 5, 6, 7])
 
 print(a*b)
 print(np.sum(a * b))
+print(a @ b)
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-[ 3  8 15 24 35]
-85
-:END:
+: [ 3  8 15 24 35]
+: 85
+: 85
 
 
 ***** Produto interno álgebra linear
@@ -1287,9 +1376,11 @@ print(np.dot(a, b))
 #+BEGIN_SRC python 
 import numpy as np
 p = np.poly1d([1, 0, 1])        # definir um polinômio em uma 
+print(np.roots(p))
 #+END_SRC
 
 #+RESULTS:
+: [-0.+1.j  0.-1.j]
 
 
 ***** Diferenças finitas
@@ -1414,16 +1505,13 @@ print('Resultado {:.3f} com erro {:.3f}%'.format(integral, error*100))
 import matplotlib.pyplot as plt
 import numpy as np
 
-x = np.linspace(0, 2*np.pi, 20)
+x = np.linspace(0, 2*np.pi, 100)
 y = np.sin(x)
 y2 = np.cos(x)
-
-plt.plot(x, y, 'o:', label='sin(x)')
-plt.plot(x, y2, 's--', label='cos(x)')
-
-plt.xlabel('x')
-plt.ylabel('y')
-
+plt.plot(x, y, '--r', label='sen(x)')
+plt.plot(x, y2, ':', label='cos(x)')
+plt.xlabel(r'Eixo $x$')
+plt.ylabel('Eixo y')
 plt.legend()
 plt.show()
 #+END_SRC
@@ -1437,6 +1525,10 @@ Plotar:
 
 $f(x) = 3  \cos(5x + \pi/2) + \cos(4 \pi/5)$
 
+=np.linspace(0, 2 * np.pi)=
+=plt.plot(x, y)=
+=plt.legend()=
+=plt.show()=
 ***** Exercício solução
 
 #+BEGIN_SRC python 
@@ -1452,6 +1544,7 @@ plt.xlabel('x Axis')            # Usa o Axes atual
 plt.ylabel('y Axis')
 plt.title('Plot do Exercício')
 plt.xlim(0, 2*np.pi)
+plt.grid(alpha=.5)
 # plt.ylim(-2, 2)
 plt.legend(loc=2)          # lista de strings
 plt.show()
@@ -1471,9 +1564,10 @@ import matplotlib.pyplot as plt
 x = np.linspace(0, 10, 50)      # 1D array
 y = np.linspace(0, 10, 50)      # 1D array
 X, Y = np.meshgrid(x, y)        # 2D array
+
 Z = np.sin(X)**2 + np.sin(Y)**2 # Valor em cada ponto do plano (x,y)
 
-c = plt.contourf(X, Y, Z, cmap='jet')
+c = plt.contourf(X, Y, Z)
 plt.contour(X, Y, Z)
 cbar = plt.colorbar(c)
 cbar.set_label('label')
@@ -1486,6 +1580,17 @@ plt.show()
 #+END_SRC
 
 #+RESULTS:
+
+: #+RESULTS:[[  0.    2.5   5.    7.5  10. ]
+:  [  0.    2.5   5.    7.5  10. ]
+:  [  0.    2.5   5.    7.5  10. ]
+:  [  0.    2.5   5.    7.5  10. ]
+:  [  0.    2.5   5.    7.5  10. ]] [[  0.    0.    0.    0.    0. ]
+:  [  2.5   2.5   2.5   2.5   2.5]
+:  [  5.    5.    5.    5.    5. ]
+:  [  7.5   7.5   7.5   7.5   7.5]
+:  [ 10.   10.   10.   10.   10. ]]
+
 ***** Exercício
 
 Definir a função:
@@ -1499,37 +1604,6 @@ $f(x, y) = \left(1 - \dfrac{x}{2} + x^{5} + y^{3} \right) \mathrm{e}^{-x^{2} - y
 
 
 
-
-***** Plot histograma
-
-1. Dados aleatórios =np.random.normal()=
-2. plotar histograma de frq. abs e rel com =plt.hist()=
-3. checar se os dados seguem distribuição normal =stats.mstats.normaltest()=
-4. plotar distribuição normal com =stats.norm.pdf(x, loc, scale)=
-
-#+BEGIN_SRC python
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import stats
-
-rv = np.random.uniform(size=1000)  # qualquer dado!
-weight = np.ones_like(rv)/float(len(rv))  # freq relativa
-plt.hist(rv, bins=10, weights=weight)
-
-
-plt.show()
-#+END_SRC
-
-#+RESULTS:
-: NormaltestResult(statistic=607.21325838488292, pvalue=1.3973856287041697e-132)
-
-Nota: p-value é a probabilidade de que o valor do chi-quadrado
-
-***** Conceitos gerais matplotlib OOP API
-
-1. Hierarquia
-
-[[file:img/curso-python-dia-2.org_20160804_085108_.png]]
 
 ***** 3 Dimensões - 2D arrays
 
@@ -1582,8 +1656,93 @@ plt.show()
 #+RESULTS:
 
 
+***** Vantagem da abordagem OOP
+
+1. Flexibilidade
+2. Passar axes para funções
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 50)
+y = np.sin(x)
+
+fig = plt.figure()              # Pyplot para criar Figure
+
+ax1 = fig.add_axes([.1, .1, .8, .8])
+ax2 = fig.add_axes([.2, .55, .3, .3])
+
+ax1.plot(x, y, '-r')
+ax2.plot(x, y, '-b')
+ax2.set_facecolor('green')
+ax2.set_xlim(0, 1)              # Um detalhe
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+
+***** Mayavi
+
+#+BEGIN_SRC python
+from numpy import linspace, meshgrid, pi, sin, cos
+
+m0 = 4; m1 = 3; m2 = 2; m3 = 3; m4 = 6; m5 = 2; m6 = 6; m7 = 4;
+
+phi = linspace(0, pi)
+theta = linspace(0, 2*pi)
+phi, theta = meshgrid(phi, theta)
+r = sin(m0*phi)**m1 + cos(m2*phi)**m3 + sin(m4*theta)**m5 + cos(m6*theta)**m7
+
+x = r*sin(phi)*cos(theta)
+y = r*cos(phi)
+z = r*sin(phi)*sin(theta)
+
+from mayavi import mlab
+s = mlab.mesh(x, y, z)
+mlab.show()
+#+END_SRC
+
+#+RESULTS:
+
+
+* Dia 4
+*** Matplotlib Continuação
+***** Plot histograma
+
+1. Dados aleatórios =np.random.normal()=
+2. plotar histograma de frq. abs e rel com =plt.hist()=
+3. checar se os dados seguem distribuição normal =stats.mstats.normaltest()=
+4. plotar distribuição normal com =stats.norm.pdf(x, loc, scale)=
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+rv = np.random.uniform(size=1000)  # qualquer dado!
+weight = np.ones_like(rv)/float(len(rv))  # freq relativa
+plt.hist(rv, bins=10, weights=weight)
+
+
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+: NormaltestResult(statistic=607.21325838488292, pvalue=1.3973856287041697e-132)
+
+Nota: p-value é a probabilidade de que o valor do chi-quadrado
+***** Conceitos gerais matplotlib OOP API
+
+1. Hierarquia
+
+[[file:img/curso-python-dia-2.org_20160804_085108_.png]]
+
 ***** Criar Figure e Axes 
 
+1. =plt.figure()= e =.add_axes()=
+2. =plt.subplots()=
+      
 #+BEGIN_SRC python
 import numpy as np
 import matplotlib.pyplot as plt  # Usa o pyploy para criar o obj Figure apenas!
@@ -1639,59 +1798,14 @@ plt.show()
 
 ***** Exercício
 
+Fazer uma função que criar o gráfico da função =sen(x)= no intervalo especificado.
+
+1. A função recebe o objeto axes e o intervalo
+2. Criar uma figura com 2 axes, um do lado do outro com =plt.subplots()=
+3. plotar =sen(x)= nos intervalo =[0, 2 pi]= e =[3pi/2, 3.5pi/2]=
 
 
-***** Vantagem da abordagem OOP
 
-1. Flexibilidade
-2. Passar axes para funções
-
-#+BEGIN_SRC python
-import numpy as np
-import matplotlib.pyplot as plt
-
-x = np.linspace(0, 10, 50)
-y = np.sin(x)
-
-fig = plt.figure()              # Pyplot para criar Figure
-
-ax1 = fig.add_axes([.1, .1, .8, .8])
-ax2 = fig.add_axes([.2, .55, .3, .3])
-
-ax1.plot(x, y, '-r')
-ax2.plot(x, y, '-b')
-ax2.set_facecolor('green')
-ax2.set_xlim(0, 1)              # Um detalhe
-plt.show()
-#+END_SRC
-
-#+RESULTS:
-
-***** Mayavi
-
-#+BEGIN_SRC python
-from numpy import linspace, meshgrid, pi, sin, cos
-
-m0 = 4; m1 = 3; m2 = 2; m3 = 3; m4 = 6; m5 = 2; m6 = 6; m7 = 4;
-
-phi = linspace(0, pi)
-theta = linspace(0, 2*pi)
-phi, theta = meshgrid(phi, theta)
-r = sin(m0*phi)**m1 + cos(m2*phi)**m3 + sin(m4*theta)**m5 + cos(m6*theta)**m7
-
-x = r*sin(phi)*cos(theta)
-y = r*cos(phi)
-z = r*sin(phi)*sin(theta)
-
-from mayavi import mlab
-s = mlab.mesh(x, y, z)
-mlab.show()
-#+END_SRC
-
-#+RESULTS:
-
-
-* Dia 4
 *** Ler e escrever arquivos
 
 1. Criar um arquivo de textos
@@ -1712,6 +1826,202 @@ with open('filename', 'r') as file_handle:
     data = file_handle.read()
     print(data)
 #+END_SRC
+
+*** Pandas
+***** O que é?
+
+Biblioteca que cria
+
+1. Estruturas baseadas em arrays: Series (1d) e DataFrames (2d)
+2. ferramentas de input e output de dados
+3. No que ele é bom: limpar dados de forma automatizada
+
+***** Series
+
+1. 1D arrays rotulados
+2. =data=: dicionário, numpy array, lista ou escalar
+3. =index=: o rótulo (flexível!)
+
+
+#+BEGIN_SRC python
+import pandas as pd
+
+data = [20, 30, 40]
+s = pd.Series(data, index=['a', 'b', 'c'])
+print(s['a':'b'])
+#+END_SRC
+
+#+RESULTS:
+: a    20
+: b    30
+: dtype: int64
+
+***** O que é um dataframe?
+
+1. 2D arrays rotulados
+2. =data=: 2d numpy array, dicionáio de: 1D arrays, listas, Series
+3. columns, index
+
+
+#+BEGIN_SRC python
+import pandas as pd
+import numpy as np
+
+dic = {'cidade': ['brasilia', 'sao paulo', 'rio de janeiro'],
+       'num de viagens': [1e5, 25e7, 13e6]}
+df = pd.DataFrame(dic, index=['a', 'b', 'c'])
+print(df)
+#+END_SRC
+
+#+RESULTS:
+:            cidade  num de viagens
+: a        brasilia        100000.0
+: b       sao paulo     250000000.0
+: c  rio de janeiro      13000000.0
+
+***** Exercício
+
+Criar um data frame usando =np.random.rand(5, 6)=
+Criar nome paras colunas: =list('ABCDEF')=
+
+#+BEGIN_SRC python
+import numpy as np
+import pandas as pd
+
+df = pd.DataFrame(np.random.rand(5, 6), columns=list('ABCDEF'))
+print(df.describe)
+#+END_SRC
+
+#+RESULTS:
+: <bound method NDFrame.describe of           A         B         C         D         E         F
+: 0  0.665352  0.738331  0.612961  0.983750  0.946098  0.746647
+: 1  0.918319  0.347220  0.713389  0.657289  0.007456  0.519579
+: 2  0.117918  0.295504  0.864038  0.681666  0.148084  0.717361
+: 3  0.697053  0.175981  0.088198  0.707086  0.291585  0.614150
+: 4  0.684266  0.480304  0.929648  0.998477  0.169160  0.136609>
+
+***** Extract data
+
+1. df['A'] - coluna
+2. df['a':'c'] - slicing de linha (pode usar int também)
+3. df.loc[label linha, [label colunas]] - selecionar por label (rótulo)
+4. df.iloc[index linha, index colunas] - selecionar por posição igual numpy
+5. df.at[linha, col] semelhante ao loc mas mais rápido
+
+
+#+BEGIN_SRC python
+import pandas as pd
+
+dic = {'cidade': ['brasilia', 'sao paulo', 'rio de janeiro', 'curitiba'],
+       'num de viagens': [3e6, 25e6, 13e6, 2e6]}
+
+df = pd.DataFrame(dic)
+print(df.iloc[0])
+#+END_SRC
+#+RESULTS:
+: cidade            sao paulo
+: num de viagens      2.5e+07
+: Name: 1, dtype: object
+
+***** Boolean index
+
+1. df[df > 1] - todos os valores > 1
+2. df[df['A'] > 1] - condição apenas na col A
+
+
+#+BEGIN_SRC python
+import pandas as pd
+import numpy as np
+
+data = np.array([[0.4, -.2, -1.5], [1.2, .17, .11], [.7, 1, .62], [.2, .54, 1], [.4, .23, .8]])
+
+df = pd.DataFrame(data, columns=['A', 'B', 'C'], index=list('abcde'))
+print(df[df < 1])
+#+END_SRC
+
+#+RESULTS:
+:      A     B     C
+: a  0.4 -0.20 -1.50
+: b  NaN  0.17  0.11
+: c  0.7   NaN  0.62
+: d  0.2  0.54   NaN
+: e  0.4  0.23  0.80
+
+***** Load data
+
+1. df = pd.read_csv(), df = pd.read_excel(), df = pd.read_table()
+2. =header=, =names=, =sep=
+
+
+#+BEGIN_SRC python
+import pandas as pd
+
+df = pd.read_csv('data.csv', sep=';', names=list('ABC'))
+print(df)
+#+END_SRC
+
+#+RESULTS:
+:     A   B   C
+: 0  10  23  30
+: 1   2  55  76
+: 2   1  18  28
+: 3  50  54  98
+
+
+***** Describe
+
+1. =mean()=, =std()=
+2. =describe()=
+
+
+#+BEGIN_SRC python
+import pandas as pd
+import numpy as np
+
+data = np.array([[0.4, -.2, -1.5], [1.2, .17, .11], [.7, 1, .62], [.2, .54, 1], [.4, .23, .8]])
+
+df = pd.DataFrame(data, columns=['A', 'B', 'C'], index=list('abcde'))
+print(df.describe())
+#+END_SRC
+
+#+RESULTS:
+:               A         B         C
+: count  5.000000  5.000000  5.000000
+: mean   0.580000  0.348000  0.206000
+: std    0.389872  0.449411  1.009247
+: min    0.200000 -0.200000 -1.500000
+: 25%    0.400000  0.170000  0.110000
+: 50%    0.400000  0.230000  0.620000
+: 75%    0.700000  0.540000  0.800000
+: max    1.200000  1.000000  1.000000
+
+***** Operações básicas
+
+1. +, -, *, / - termo a termo
+2. somar colunas - =df1.A = df1.A + df2.A=
+3. somar células - =df1.loc['a', 'A'] = df1.A[0] + df2.A[0]=
+4. =.dropna()=, =.fillna()= =.drop(label, axis)=
+5. =.append(ignore_index=True)= 
+   
+#+BEGIN_SRC python
+import pandas as pd
+import numpy as np
+
+np.random.seed(100)
+df1 = pd.DataFrame(np.random.randn(5,3), columns=['A', 'B', 'C'], index=list('abcde'))
+
+np.random.seed(200)
+df2 = pd.DataFrame(np.random.randn(5,3), columns=['A', 'B', 'C'], index=list('abcde'))
+#+END_SRC
+
+#+RESULTS:
+:           B         C
+: a  0.342680  1.153036
+: b  0.981321  0.514219
+: c -1.070043 -0.189496
+: d -0.458027  0.435163
+: e  0.816847  0.672721
+
 
 *** Sympy
 ***** Integration
@@ -1747,185 +2057,6 @@ sp.pprint(sp.diff(f, x))
 
 #+RESULTS:
 : 0
-
-*** Pandas
-***** O que é?
-
-Biblioteca para criar dataframes
-
-series -> dataframe ->
-
-***** O que é um dataframe?
-
-1. data: numpy array, dict ou outro DF
-2. columns, index
-
-#+BEGIN_SRC python
-import pandas as pd
-import nqumpy as np
-
-dic = {'cidade': ['brasilia', 'sao paulo', 'rio de janeiro'],
-       'num de viagens': [1e5, 25e7, 13e6]}
-
-df = pd.DataFrame(dic)
-print(df)
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-           cidade  num de viagens
-0        brasilia        100000.0
-1       sao paulo     250000000.0
-2  rio de janeiro      13000000.0
-:END:
-
-***** Load data
-
-df = pd.read_csv()
-df = pd.read_excel()
-df = pd.read_table()
-
-#+BEGIN_SRC python
-import pandas as pd
-df = pd.read_csv('c:/Users/Nasser/Desktop/data.csv')
-df['Value'].hist()
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-[[file:ipython-inline-images/ob-ipython-58280e643b7143a0f5977c8424e9b5e3.png]]
-:END:
-
-#+BEGIN_SRC python
-import pandas as pd
-import numpy as np
-np.random.seed(13)
-
-df = pd.DataFrame(np.random.randn(5, 3), columns=['A', 'B', 'C'], index=['a', 'b', 'c', 'd', 'e'])
-df.to_csv('c:/Users/Nasser/OneDrive/UNB/2017_1/Curso-Python/dia2/data.csv')
-print(df)
-df2 = pd.read_csv('c:/Users/Nasser/OneDrive/UNB/2017_1/Curso-Python/dia2/data.csv')
-df2 =df2.set_index('Unnamed: 0')
-print(df2)
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-          A         B         C
-a -0.712391  0.753766 -0.044503
-b  0.451812  1.345102  0.532338
-c  1.350188  0.861211  1.478686
-d -1.045377 -0.788989 -1.261606
-e  0.562847 -0.243326  0.913741
-                   A         B         C
-Unnamed: 0                              
-a          -0.712391  0.753766 -0.044503
-b           0.451812  1.345102  0.532338
-c           1.350188  0.861211  1.478686
-d          -1.045377 -0.788989 -1.261606
-e           0.562847 -0.243326  0.913741
-:END:
-
-
-***** Extract data
-
-1. df['A'] - coluna
-2. df['a':'c'] - slicing de linha
-3. df.loc[linha, coluna] - selecionar por label
-4. df.iloc[linha, coluna] - selecionar por index
-
-
-#+BEGIN_SRC python
-import pandas as pd
-
-dic = {'cidade': ['brasilia', 'sao paulo', 'rio de janeiro'],
-       'num de viagens': [1e5, 25e7, 13e6]}
-
-df = pd.DataFrame(dic, index=['a', 'b', 'c'])
-print(df.loc['b', 'num de viagens'])
-#+END_SRC
-#+RESULTS:
-:RESULTS:
-250000000.0
-:END:
-
-***** Boolean index
-
-1. df[df > 1] - todos os valores > 1
-2. df[df['A'] > 1] - condição apenas na col A
-
-
-#+BEGIN_SRC python
-import pandas as pd
-import numpy as np
-
-data = np.array([[0.4, -.2, -1.5], [1.2, .17, .11], [.7, 1, .62], [.2, .54, 1], [.4, .23, .8]])
-
-df = pd.DataFrame(data, columns=['A', 'B', 'C'], index=list('abcde'))
-print(df)
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-     A     B     C
-b  1.2  0.17  0.11
-:END:
-
-***** Describe
-
-1. mean, std
-1. describe
-
-
-#+BEGIN_SRC python
-import pandas as pd
-import numpy as np
-
-data = np.array([[0.4, -.2, -1.5], [1.2, .17, .11], [.7, 1, .62], [.2, .54, 1], [.4, .23, .8]])
-
-df = pd.DataFrame(data, columns=['A', 'B', 'C'], index=list('abcde'))
-print(df.std())
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-A    0.389872
-B    0.449411
-C    1.009247
-dtype: float64
-:END:
-
-***** Operações
-
-1. +, -, *, / - termo a termo
-2. somar colunas - df1.A = df1.A + df2.A
-3. somar células - df1.loc['a', 'A'] = df1.A[0] + df2.A[0]
-   
-#+BEGIN_SRC python
-import pandas as pd
-import numpy as np
-
-np.random.seed(100)
-df1 = pd.DataFrame(np.random.randn(5,3), columns=['A', 'B', 'C'], index=list('abcde'))
-
-np.random.seed(200)
-df2 = pd.DataFrame(np.random.randn(5,3), columns=['A', 'B', 'C'], index=list('abcde'))
-
-df1.iloc[0, 0] = df1.iloc[0, 0] * 10
-print(df1)
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-           A         B         C
-a -17.497655  0.342680  1.153036
-b  -0.252436  0.981321  0.514219
-c   0.221180 -1.070043 -0.189496
-d   0.255001 -0.458027  0.435163
-e  -0.583595  0.816847  0.672721
-:END:
-
-
 
 *** Pytest
 
